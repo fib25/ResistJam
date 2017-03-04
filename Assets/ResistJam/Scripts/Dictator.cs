@@ -25,4 +25,13 @@ public class Dictator : MonoBehaviour
 		_ideals.publicSpending = this.publicSpending;
 		_ideals.civilRights = this.civilRights;
 	}
+
+	public void RandomiseIdeals()
+	{
+		_ideals.Randomise();
+
+		this.immigration = _ideals.immigration;
+		this.publicSpending = _ideals.publicSpending;
+		this.civilRights = _ideals.civilRights;
+	}
 }

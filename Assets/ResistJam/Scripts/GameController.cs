@@ -5,11 +5,15 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 	public Person personPrefab;
+	public UnityEngine.UI.Text timerText;
 
 	protected Transform crowdTransform;
 	protected Dictator dictator;
 	protected Player player;
 	protected List<Person> people = new List<Person>();
+
+	protected float roundTimer;
+	protected bool gameRunning = false;
 
 	protected void Awake()
 	{
@@ -21,24 +25,52 @@ public class GameController : MonoBehaviour
 
 	protected void Start()
 	{
-		for (int i = 0; i < GameSettings.Values.crowdSize; i++)
+		InitCrowd();
+		InitDictator();
+		InitPlayer();
+
+		roundTimer = GameSettings.Instance.RoundTime;
+		gameRunning = true;
+	}
+
+	protected void InitCrowd()
+	{
+		for (int i = 0; i < GameSettings.Instance.CrowdSize; i++)
 		{
 			Person inst = GameObject.Instantiate<Person>(personPrefab);
 			inst.transform.SetParent(crowdTransform);
 
-			//inst.lean = UnityEngine.Random.Range(0.2f, 0.8f);
+			inst.lean = UnityEngine.Random.Range(0.4f, 0.6f);
 
 			people.Add(inst);
 		}
 	}
 
+	protected void InitDictator()
+	{
+		dictator.RandomiseIdeals();
+	}
+
+	protected void InitPlayer()
+	{
+
+	}
+
 	protected void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.C))
+		if (gameRunning)
 		{
 			for (int i = 0; i < people.Count; i++)
 			{
 				UpdateLean(people[i]);
+			}
+
+			roundTimer -= Time.deltaTime;
+			timerText.text = roundTimer.ToString("00");
+
+			if (roundTimer <= 0f)
+			{
+				CompleteGame();
 			}
 		}
 	}
@@ -53,15 +85,19 @@ public class GameController : MonoBehaviour
 		float playerResult = CompareIdeals(person.Ideals, player.Ideals);
 		//Debug.Log("Player chi: " + playerResult);
 
-		float ratio = dictatorResult / playerResult;
-		//Debug.Log("Ratio = " + ratio);
+		float maxChi = GameSettings.Instance.MaxChi;
 
-		float dictatorDrift = -Mathf.Clamp(1f - dictatorResult, 0f, 1f);
-		float playerDrift = Mathf.Clamp(1f - playerResult, 0f, 1f);
-		float drift = dictatorDrift + playerDrift;
-		//Debug.Log("Drift = " + drift);
+		float dictatorDrift = -Mathf.Clamp(maxChi - dictatorResult, 0f, maxChi);
+		float playerDrift = Mathf.Clamp(maxChi - playerResult, 0f, maxChi);
+		// DEBUG testing the numbers.
+		//dictatorDrift = -7f;
+		//playerDrift = 9f;
+		//Debug.Log("Dicator drift: " + dictatorDrift);
+		//Debug.Log("Player drift: " + playerDrift);
+		float driftAmount = dictatorDrift + playerDrift;
+		//Debug.Log("Drift = " + driftAmount);
 
-		person.lean += 0.1f * drift;
+		person.lean += (GameSettings.Instance.MaxDriftSpeed / maxChi) * driftAmount * Time.deltaTime;
 	}
 
 	protected float CompareIdeals(Ideals a, Ideals b)
@@ -71,5 +107,10 @@ public class GameController : MonoBehaviour
 							  (Mathf.Pow((b.publicSpending - a.publicSpending), 2f) / a.publicSpending));
 
 		return chi;
+	}
+
+	protected void CompleteGame()
+	{
+		//gameRunning = false;
 	}
 }

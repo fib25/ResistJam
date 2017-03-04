@@ -11,4 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07fec36fb1b047f45a6767b93f82250d, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  crowdSize: 5
+  CrowdSize: 10
+  MaxDriftSpeed: 0.15
+  RoundTime: 60
+  MaxChi: 10

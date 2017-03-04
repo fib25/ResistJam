@@ -31,8 +31,10 @@ public class Person : MonoBehaviour
 		targetPos = this.transform.position;
 	}
 
-	protected void FixedUpdate()
+	protected void Update()
 	{
+		lean = Mathf.Clamp01(lean);
+
 		// Target area.
 		localBounds = CalculateLocalBounds(lean);
 
