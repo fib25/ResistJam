@@ -19,6 +19,15 @@ public class Ideals
 
 	protected const float WEIGHT = 2f;
 
+	public static float CompareIdeals(Ideals a, Ideals b)
+	{
+		float chi = Mathf.Abs((Mathf.Pow((b.immigration - a.immigration), 2f) / a.immigration) +
+			(Mathf.Pow((b.civilRights - a.civilRights), 2f) / a.civilRights) +
+			(Mathf.Pow((b.publicSpending - a.publicSpending), 2f) / a.publicSpending));
+
+		return chi;
+	}
+
 	public void Randomise()
 	{
 		// imm = randomNo. pS = rand, CR = Rand, choose 1-3 , choicex2 + nonchosens choice x2/sum, nonchosens/sum

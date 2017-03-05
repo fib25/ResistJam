@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class GameSettings : ScriptableObject
 {
+	[Header("Settings")]
 	public int CrowdSize;
 	public float MaxDriftSpeed;
 	public float RoundTime;
 	public float MaxChi;
+	[Header("Debug")]
+	public bool ShowPersonDebug;
 
 
 	protected static GameSettings _gameSettings;

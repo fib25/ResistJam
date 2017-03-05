@@ -62,7 +62,7 @@ public class GameController : MonoBehaviour
 		{
 			for (int i = 0; i < people.Count; i++)
 			{
-				UpdateLean(people[i]);
+				people[i].UpdateLean(player, dictator);
 			}
 
 			roundTimer -= Time.deltaTime;
@@ -73,40 +73,6 @@ public class GameController : MonoBehaviour
 				CompleteGame();
 			}
 		}
-	}
-
-	protected void UpdateLean(Person person)
-	{
-		//Debug.Log("----------");
-
-		float dictatorResult = CompareIdeals(person.Ideals, dictator.Ideals);
-		//Debug.Log("Dictator chi: " + dictatorResult);
-
-		float playerResult = CompareIdeals(person.Ideals, player.Ideals);
-		//Debug.Log("Player chi: " + playerResult);
-
-		float maxChi = GameSettings.Instance.MaxChi;
-
-		float dictatorDrift = -Mathf.Clamp(maxChi - dictatorResult, 0f, maxChi);
-		float playerDrift = Mathf.Clamp(maxChi - playerResult, 0f, maxChi);
-		// DEBUG testing the numbers.
-		//dictatorDrift = -7f;
-		//playerDrift = 9f;
-		//Debug.Log("Dicator drift: " + dictatorDrift);
-		//Debug.Log("Player drift: " + playerDrift);
-		float driftAmount = dictatorDrift + playerDrift;
-		//Debug.Log("Drift = " + driftAmount);
-
-		person.lean += (GameSettings.Instance.MaxDriftSpeed / maxChi) * driftAmount * Time.deltaTime;
-	}
-
-	protected float CompareIdeals(Ideals a, Ideals b)
-	{
-		float chi = Mathf.Abs((Mathf.Pow((b.immigration - a.immigration), 2f) / a.immigration) +
-							  (Mathf.Pow((b.civilRights - a.civilRights), 2f) / a.civilRights) +
-							  (Mathf.Pow((b.publicSpending - a.publicSpending), 2f) / a.publicSpending));
-
-		return chi;
 	}
 
 	protected void CompleteGame()
