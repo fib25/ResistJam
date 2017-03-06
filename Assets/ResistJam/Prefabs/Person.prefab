@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 222337293169471104}
   - component: {fileID: 114105050580792256}
   m_Layer: 0
-  m_Name: Drift
+  m_Name: Lean
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -426,7 +426,7 @@ MonoBehaviour:
   xText: {fileID: 114613447395481398}
   yText: {fileID: 114516286978499218}
   zText: {fileID: 114353530979005824}
-  driftText: {fileID: 114105050580792256}
+  leanText: {fileID: 114105050580792256}
   speed: {fileID: 114412680968413256}
   keyIdeal: {fileID: 114572106837784898}
 --- !u!114 &114685116482596268
@@ -440,9 +440,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587b4bc632971764e94ef2d8d649879e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immigration: 0
-  publicSpending: 0
-  civilRights: 0
+  policyA: 0
+  policyB: 0
+  policyC: 0
   speed: 1
   lean: 0.5
   showDebug: 1

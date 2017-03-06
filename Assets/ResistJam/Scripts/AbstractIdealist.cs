@@ -4,12 +4,9 @@ using UnityEngine;
 
 public abstract class AbstractIdealist : MonoBehaviour
 {
-	[Range(-1f, 1f)]
-	public float immigration;
-	[Range(-1f, 1f)]
-	public float publicSpending;
-	[Range(-1f, 1f)]
-	public float civilRights;
+	public float policyA;
+	public float policyB;
+	public float policyC;
 
 	protected Ideals _ideals;
 	public Ideals Ideals { get { return _ideals; } }
@@ -26,17 +23,22 @@ public abstract class AbstractIdealist : MonoBehaviour
 
 	protected virtual void Update()
 	{
-		_ideals.immigration = this.immigration;
-		_ideals.publicSpending = this.publicSpending;
-		_ideals.civilRights = this.civilRights;
+		_ideals.SetIdealValue(IdealType.A, this.policyA);
+		_ideals.SetIdealValue(IdealType.B, this.policyB);
+		_ideals.SetIdealValue(IdealType.C, this.policyC);
 	}
 
 	public virtual void RandomiseIdeals()
 	{
 		_ideals.Randomise();
 
-		this.immigration = _ideals.immigration;
-		this.publicSpending = _ideals.publicSpending;
-		this.civilRights = _ideals.civilRights;
+		UpdatePublicVars();
+	}
+
+	protected void UpdatePublicVars()
+	{
+		this.policyA = _ideals.GetIdealValue(IdealType.A);
+		this.policyB = _ideals.GetIdealValue(IdealType.B);
+		this.policyC = _ideals.GetIdealValue(IdealType.C);
 	}
 }

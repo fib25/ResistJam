@@ -23,8 +23,8 @@ public class UIPlayerControls : MonoBehaviour
 
 	public void OnGoButton()
 	{
-		player.immigration = immigrationSlider.value;
-		player.publicSpending = publicSpendingSlider.value;
-		player.civilRights = civilRightsSlider.value;
+		player.policyA = immigrationSlider.value;
+		player.policyB = publicSpendingSlider.value;
+		player.policyC = civilRightsSlider.value;
 	}
 }

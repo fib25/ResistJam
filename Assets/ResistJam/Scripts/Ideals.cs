@@ -4,123 +4,84 @@ using UnityEngine;
 
 public enum IdealType
 {
-	Immigration,
-	PublicSpending,
-	CivilRights
+	A,
+	B,
+	C
 }
 
 public class Ideals
 {
-	public float immigration;
-	public float publicSpending;
-	public float civilRights;
+	public Dictionary<IdealType, float> idealsDict = new Dictionary<IdealType, float>();
 
 	public IdealType keyIdeal;
 
-	protected const float WEIGHT = 2f;
-
-	public static float CompareIdeals(Ideals a, Ideals b)
+	public static float CompareIdeals(Ideals person, Ideals other)
 	{
-		float chi = Mathf.Abs((Mathf.Pow((b.immigration - a.immigration), 2f) / a.immigration) +
-			(Mathf.Pow((b.civilRights - a.civilRights), 2f) / a.civilRights) +
-			(Mathf.Pow((b.publicSpending - a.publicSpending), 2f) / a.publicSpending));
+		float result = 0;
 
-		return chi;
+		foreach (IdealType idealType in person.idealsDict.Keys)
+		{
+			if (person.idealsDict[idealType] > 0)
+			{
+				if (other.idealsDict[idealType] >= person.idealsDict[idealType])
+				{
+					result++;
+				}
+			}
+			else
+			{
+				if (other.idealsDict[idealType] <= person.idealsDict[idealType])
+				{
+					result++;
+				}
+			}
+		}
+
+		return result;
+	}
+
+	protected void InitIdealValue(IdealType idealType)
+	{
+		float newVal = 0f;
+
+		if (keyIdeal == idealType)
+		{
+			newVal = Rand(4, 5);
+		}
+		else
+		{
+			newVal = Rand(1, 3);
+		}
+
+		if (idealsDict.ContainsKey(idealType)) idealsDict[idealType] = newVal;
+		else idealsDict[idealType] = newVal;
 	}
 
 	public void Randomise()
 	{
-		// imm = randomNo. pS = rand, CR = Rand, choose 1-3 , choicex2 + nonchosens choice x2/sum, nonchosens/sum
-		immigration = UnityEngine.Random.Range(0f, 1f);
-		publicSpending = UnityEngine.Random.Range(0f, 1f);
-		civilRights = UnityEngine.Random.Range(0f, 1f);
+		keyIdeal = (IdealType)UnityEngine.Random.Range(0, 3);
 
-		float max = Mathf.Max(immigration,publicSpending,civilRights);
-		Debug.Log(max);
+		InitIdealValue(IdealType.A);
+		InitIdealValue(IdealType.B);
+		InitIdealValue(IdealType.C);
 
-		if (immigration == max)
-		{
-			keyIdeal = IdealType.Immigration;
-		}
-		else if (publicSpending == max)
-		{
-			keyIdeal = IdealType.PublicSpending;
-		}
-		else if (civilRights == max)
-		{
-			keyIdeal = IdealType.CivilRights;
-		}
-
-		float keyVal = GetValue(keyIdeal);
-
-		float sum = immigration + publicSpending + civilRights + (keyVal * (WEIGHT-1f));
-
-		if (keyIdeal == IdealType.Immigration)
-		{
-			immigration = (immigration * WEIGHT) / sum;
-		}
-		else
-		{
-			immigration = immigration / sum;
-		}
-
-		if (keyIdeal == IdealType.PublicSpending)
-		{
-			publicSpending = (publicSpending * WEIGHT) / sum;
-		}
-		else
-		{
-			publicSpending = publicSpending / sum;
-		}
-
-		if (keyIdeal == IdealType.CivilRights)
-		{
-			civilRights = (civilRights * WEIGHT) / sum;
-		}
-		else
-		{
-			civilRights = civilRights / sum;
-		}
-
-		immigration 	*= UnityEngine.Random.value > 0.5f ? -1f : 1f;
-		publicSpending 	*= UnityEngine.Random.value > 0.5f ? -1f : 1f;
-		civilRights 	*= UnityEngine.Random.value > 0.5f ? -1f : 1f;
-
-		Debug.Log("Key: " + keyIdeal.ToString() + " - " + immigration + " " + publicSpending + " " + civilRights);
+		Debug.Log("Key: " + keyIdeal.ToString() + " - " + idealsDict[IdealType.A] + " " + idealsDict[IdealType.B] + " " + idealsDict[IdealType.C]);
 	}
 
-	public void SetValue(IdealType type, float val)
+	public void SetIdealValue(IdealType idealType, float value)
 	{
-		switch (type)
-		{
-		case IdealType.Immigration:
-			immigration = val;
-			break;
-
-		case IdealType.PublicSpending:
-			publicSpending = val;
-			break;
-
-		case IdealType.CivilRights:
-			civilRights = val;
-			break;
-		}
+		if (idealsDict.ContainsKey(idealType)) idealsDict[idealType] = value;
+		else idealsDict[idealType] = value;
 	}
 
-	public float GetValue(IdealType type)
+	public float GetIdealValue(IdealType idealType)
 	{
-		switch (type)
-		{
-		case IdealType.Immigration:
-			return immigration;
+		if (idealsDict.ContainsKey(idealType)) return idealsDict[idealType];
+		else return 0f;
+	}
 
-		case IdealType.PublicSpending:
-			return publicSpending;
-
-		case IdealType.CivilRights:
-			return civilRights;
-		}
-
-		return 0f;
+	protected float Rand(int min, int max)
+	{
+		return (float)UnityEngine.Random.Range(min, max + 1) * (UnityEngine.Random.value > 0.5f ? 1f : -1f);
 	}
 }

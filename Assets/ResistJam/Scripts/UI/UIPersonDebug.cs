@@ -9,25 +9,30 @@ public class UIPersonDebug : MonoBehaviour
 	public Text xText;
 	public Text yText;
 	public Text zText;
-	public Text driftText;
+	public Text leanText;
 	public Text speed;
 	public Text keyIdeal;
 
 	protected void Start()
 	{
-		Color randomColour = new Color(UnityEngine.Random.RandomRange(0.5f, 1f),
-									   UnityEngine.Random.RandomRange(0.5f, 1f),
-									   UnityEngine.Random.RandomRange(0.5f, 1f));
-		xText.color = yText.color = zText.color = driftText.color = speed.color = keyIdeal.color = randomColour;
+		Color randomColour = new Color(UnityEngine.Random.Range(0.5f, 1f),
+									   UnityEngine.Random.Range(0.5f, 1f),
+									   UnityEngine.Random.Range(0.5f, 1f));
+		xText.color = yText.color = zText.color = leanText.color = speed.color = keyIdeal.color = randomColour;
 	}
 
 	protected void Update()
 	{
-		xText.text = "X: " + person.Ideals.immigration.ToString("N3");
-		yText.text = "Y: " + person.Ideals.publicSpending.ToString("N3");
-		zText.text = "Z: " + person.Ideals.civilRights.ToString("N3");
-		driftText.text = "Drift: " + person.driftAmount.ToString("N3");
+		xText.text = GetString(IdealType.A);
+		yText.text = GetString(IdealType.B);
+		zText.text = GetString(IdealType.C);
+		leanText.text = "Lean: " + person.lean.ToString("N3");
 		speed.text = "Speed: " + person.driftSpeed.ToString("N3");
 		keyIdeal.text = "Key: " + person.Ideals.keyIdeal.ToString();
+	}
+
+	protected string GetString(IdealType idealType)
+	{
+		return idealType.ToString().Replace("IdealType.", "") + ": " + person.Ideals.GetIdealValue(idealType).ToString("N1");
 	}
 }

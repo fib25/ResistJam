@@ -12,8 +12,14 @@ public class UIIdealsDebug : MonoBehaviour
 
 	protected void Update()
 	{
-		xText.text = "X: " + idealist.Ideals.immigration.ToString("N3");
-		yText.text = "Y: " + idealist.Ideals.publicSpending.ToString("N3");
-		zText.text = "Z: " + idealist.Ideals.civilRights.ToString("N3");
+		xText.text = GetString(IdealType.A);
+		yText.text = GetString(IdealType.B);
+		zText.text = GetString(IdealType.C);
 	}
+
+	protected string GetString(IdealType idealType)
+	{
+		return idealType.ToString().Replace("IdealType.", "") + ": " + idealist.Ideals.GetIdealValue(idealType).ToString("N1");
+	}
+
 }

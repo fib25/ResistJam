@@ -24,10 +24,7 @@ public class Person : AbstractIdealist
 	{
 		base.Awake();
 
-		_ideals.Randomise();
-		immigration = _ideals.immigration;
-		publicSpending = _ideals.publicSpending;
-		civilRights = _ideals.civilRights;
+		RandomiseIdeals();
 
 		BoxCollider2D personArea = GameObject.Find("CrowdArea").GetComponent<BoxCollider2D>();
 		maxBounds = new BoundBox(personArea.bounds.center, personArea.bounds.size);
@@ -45,8 +42,6 @@ public class Person : AbstractIdealist
 	protected override void Update()
 	{
 		base.Update();
-
-		lean = Mathf.Clamp01(lean);
 
 		// Target area.
 		localBounds = CalculateLocalBounds(lean);
@@ -95,27 +90,15 @@ public class Person : AbstractIdealist
 		float playerResult = Ideals.CompareIdeals(this.Ideals, player.Ideals);
 		//Debug.Log("Player chi: " + playerResult);
 
-		float maxChi = GameSettings.Instance.MaxChi;
-
-		float dictatorDrift = -Mathf.Clamp(maxChi - dictatorResult, 0f, maxChi);
-		float playerDrift = Mathf.Clamp(maxChi - playerResult, 0f, maxChi);
-		// DEBUG testing the numbers.
-		//dictatorDrift = -7f;
-		//playerDrift = 9f;
-		//Debug.Log("Dicator drift: " + dictatorDrift);
-		//Debug.Log("Player drift: " + playerDrift);
-		driftAmount = dictatorDrift + playerDrift;
-		//Debug.Log("Drift = " + driftAmount);
-
-		driftSpeed = (GameSettings.Instance.MaxDriftSpeed / maxChi) * driftAmount;
-
-		lean += driftSpeed * Time.deltaTime;
+		lean = playerResult - dictatorResult;
 	}
 
 	protected BoundBox CalculateLocalBounds(float lean)
 	{
+		float yPos = Mathf.Lerp(maxBounds.Top, maxBounds.Bottom, Mathf.InverseLerp(-3f, 3f, lean));
+
 		BoundBox newBounds = new BoundBox();
-		newBounds.Center = new Vector3(maxBounds.Center.x, Mathf.Lerp(maxBounds.Top, maxBounds.Bottom, lean), 0f);
+		newBounds.Center = new Vector3(maxBounds.Center.x, yPos, 0f);
 		newBounds.Size = new Vector3(maxBounds.Size.x, maxBounds.Size.y * 0.1f, 0f);
 
 		return newBounds;

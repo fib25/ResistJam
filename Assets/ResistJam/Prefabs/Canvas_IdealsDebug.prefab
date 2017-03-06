@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222075777016673068}
   - component: {fileID: 114624796640344344}
   m_Layer: 0
-  m_Name: Y
+  m_Name: B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 222762470291484888}
   - component: {fileID: 114377354282954166}
   m_Layer: 0
-  m_Name: Z
+  m_Name: C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 222477823535333210}
   - component: {fileID: 114628432574672750}
   m_Layer: 0
-  m_Name: X
+  m_Name: A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Z: 99'
+  m_Text: 'C: 99'
 --- !u!114 &114442448534313432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,7 +182,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Y: 99'
+  m_Text: 'B: 99'
 --- !u!114 &114628432574672750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,7 +215,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'X: 99'
+  m_Text: 'A: 99'
 --- !u!114 &114929454928634996
 MonoBehaviour:
   m_ObjectHideFlags: 1
