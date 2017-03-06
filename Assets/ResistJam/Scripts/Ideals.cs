@@ -13,7 +13,7 @@ public class Ideals
 {
 	public Dictionary<IdealType, float> idealsDict = new Dictionary<IdealType, float>();
 
-	public IdealType keyIdeal;
+	public IdealType KeyIdeal { get; private set; }
 
 	public static float CompareIdeals(Ideals person, Ideals other)
 	{
@@ -40,47 +40,62 @@ public class Ideals
 		return result;
 	}
 
-	protected void InitIdealValue(IdealType idealType)
+	public Ideals()
+	{
+		// Initialise the ideals dictionary.
+		idealsDict.Add(IdealType.A, 0);
+		idealsDict.Add(IdealType.B, 0);
+		idealsDict.Add(IdealType.C, 0);
+	}
+
+	public void RandomiseKeyIdeals()
+	{
+		KeyIdeal = (IdealType)UnityEngine.Random.Range(0, 3);
+
+		RandomiseCurrentIdeals();
+	}
+
+	public void RandomiseCurrentIdeals()
+	{
+		RandomiseIdealValue(IdealType.A);
+		RandomiseIdealValue(IdealType.B);
+		RandomiseIdealValue(IdealType.C);
+
+		//Debug.Log("Key: " + keyIdeal.ToString() + " - " + idealsDict[IdealType.A] + " " + idealsDict[IdealType.B] + " " + idealsDict[IdealType.C]);
+	}
+
+	public void RandomiseIdealValue(IdealType idealType)
 	{
 		float newVal = 0f;
 
-		if (keyIdeal == idealType)
+		if (KeyIdeal == idealType)
 		{
-			newVal = Rand(4, 5);
+			newVal = RandomValue(4, 5);
 		}
 		else
 		{
-			newVal = Rand(1, 3);
+			newVal = RandomValue(1, 3);
 		}
 
-		if (idealsDict.ContainsKey(idealType)) idealsDict[idealType] = newVal;
-		else idealsDict[idealType] = newVal;
-	}
-
-	public void Randomise()
-	{
-		keyIdeal = (IdealType)UnityEngine.Random.Range(0, 3);
-
-		InitIdealValue(IdealType.A);
-		InitIdealValue(IdealType.B);
-		InitIdealValue(IdealType.C);
-
-		Debug.Log("Key: " + keyIdeal.ToString() + " - " + idealsDict[IdealType.A] + " " + idealsDict[IdealType.B] + " " + idealsDict[IdealType.C]);
-	}
-
-	public void SetIdealValue(IdealType idealType, float value)
-	{
-		if (idealsDict.ContainsKey(idealType)) idealsDict[idealType] = value;
-		else idealsDict[idealType] = value;
+		idealsDict[idealType] = newVal;
 	}
 
 	public float GetIdealValue(IdealType idealType)
 	{
-		if (idealsDict.ContainsKey(idealType)) return idealsDict[idealType];
-		else return 0f;
+		return idealsDict[idealType];
 	}
 
-	protected float Rand(int min, int max)
+	public void SetIdealValue(IdealType idealType, float value)
+	{
+		idealsDict[idealType] = value;
+	}
+
+	public void AddToIdealValue(IdealType idealType, float value)
+	{
+		idealsDict[idealType] += value;
+	}
+
+	protected float RandomValue(int min, int max)
 	{
 		return (float)UnityEngine.Random.Range(min, max + 1) * (UnityEngine.Random.value > 0.5f ? 1f : -1f);
 	}

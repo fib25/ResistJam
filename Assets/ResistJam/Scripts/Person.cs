@@ -21,7 +21,7 @@ public class Person : AbstractIdealist
 	{
 		base.Awake();
 
-		RandomiseIdeals();
+		RandomiseKeyIdeals();
 
 		BoxCollider2D personArea = GameObject.Find("CrowdArea").GetComponent<BoxCollider2D>();
 		maxBounds = new BoundBox(personArea.bounds.center, personArea.bounds.size);

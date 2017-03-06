@@ -10,7 +10,8 @@ public class GameController : MonoBehaviour
 	protected Transform crowdTransform;
 	protected Dictator dictator;
 	protected Player player;
-	protected List<Person> people = new List<Person>();
+	protected List<Person> allPeople = new List<Person>();
+	protected UIPlayerControls playerControls;
 
 	protected float roundTimer;
 	protected bool gameRunning = false;
@@ -19,6 +20,8 @@ public class GameController : MonoBehaviour
 	{
 		dictator = FindObjectOfType<Dictator>();
 		player = FindObjectOfType<Player>();
+		playerControls = FindObjectOfType<UIPlayerControls>();
+		playerControls.CardSelectedEvent += OnCardSelected;
 
 		crowdTransform = GameObject.Find("Crowd").transform;
 	}
@@ -28,6 +31,8 @@ public class GameController : MonoBehaviour
 		InitCrowd();
 		InitDictator();
 		InitPlayer();
+
+		playerControls.SetAllPeople(allPeople);
 
 		roundTimer = GameSettings.Instance.RoundTime;
 		gameRunning = true;
@@ -43,27 +48,27 @@ public class GameController : MonoBehaviour
 
 			inst.lean = UnityEngine.Random.Range(0.4f, 0.6f);
 
-			people.Add(inst);
+			allPeople.Add(inst);
 		}
 	}
 
 	protected void InitDictator()
 	{
-		dictator.RandomiseIdeals();
+		dictator.RandomiseKeyIdeals();
 	}
 
 	protected void InitPlayer()
 	{
-
+		//player.RandomiseIdeals();
 	}
 
 	protected void Update()
 	{
 		if (gameRunning)
 		{
-			for (int i = 0; i < people.Count; i++)
+			for (int i = 0; i < allPeople.Count; i++)
 			{
-				people[i].UpdateLean(player, dictator);
+				allPeople[i].UpdateLean(player, dictator);
 			}
 
 			roundTimer -= Time.deltaTime;
@@ -79,5 +84,10 @@ public class GameController : MonoBehaviour
 	protected void CompleteGame()
 	{
 		//gameRunning = false;
+	}
+
+	protected void OnCardSelected(Card card)
+	{
+		player.Ideals.AddToIdealValue(card.idealType, card.value);
 	}
 }

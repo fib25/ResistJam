@@ -4,10 +4,6 @@ using UnityEngine;
 
 public abstract class AbstractIdealist : MonoBehaviour
 {
-	public float policyA;
-	public float policyB;
-	public float policyC;
-
 	protected Ideals _ideals;
 	public Ideals Ideals { get { return _ideals; } }
 
@@ -23,22 +19,16 @@ public abstract class AbstractIdealist : MonoBehaviour
 
 	protected virtual void Update()
 	{
-		_ideals.SetIdealValue(IdealType.A, this.policyA);
-		_ideals.SetIdealValue(IdealType.B, this.policyB);
-		_ideals.SetIdealValue(IdealType.C, this.policyC);
+		//
 	}
 
-	public virtual void RandomiseIdeals()
+	public virtual void RandomiseKeyIdeals()
 	{
-		_ideals.Randomise();
-
-		UpdatePublicVars();
+		_ideals.RandomiseKeyIdeals();
 	}
 
-	protected void UpdatePublicVars()
+	public virtual void RandomiseCurrentIdeals()
 	{
-		this.policyA = _ideals.GetIdealValue(IdealType.A);
-		this.policyB = _ideals.GetIdealValue(IdealType.B);
-		this.policyC = _ideals.GetIdealValue(IdealType.C);
+		_ideals.RandomiseCurrentIdeals();
 	}
 }

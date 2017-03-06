@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class GameSettings : ScriptableObject
 {
-	[Header("Settings")]
-	public int CrowdSize;
-	public float PersonMaxSpeed;
-	public float RoundTime;
-	[Header("Debug")]
-	public bool ShowPersonDebug;
-
-
 	protected static GameSettings _gameSettings;
 	public static GameSettings Instance
 	{
@@ -21,6 +13,13 @@ public class GameSettings : ScriptableObject
 			return _gameSettings;
 		}
 	}
+
+	[Header("Settings")]
+	public int CrowdSize;
+	public float PersonMaxSpeed;
+	public float RoundTime;
+	[Header("Debug")]
+	public bool ShowPersonDebug;
 
 	/// <summary>
 	/// Loads the GameSettings asset from the Resources folder.
