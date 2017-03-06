@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour
 		{
 			Person inst = GameObject.Instantiate<Person>(personPrefab);
 			inst.transform.SetParent(crowdTransform);
+			inst.transform.localPosition = Vector3.zero;
 
 			inst.lean = UnityEngine.Random.Range(0.4f, 0.6f);
 

@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class Person : AbstractIdealist
 {
-	public float speed = 1f;
 	[Range(0f, 1f)]
 	public float lean = 0.5f;
 	[Header("Debug")]
 	public bool showDebug = false;
 	public GameObject debugDisplay;
 
+	[HideInInspector]
+	public float speed = 1f;
+
 	protected Vector3 targetPos;
 	protected BoundBox maxBounds;
 	protected BoundBox localBounds;
-
-	[HideInInspector]
-	public float driftAmount;
-	[HideInInspector]
-	public float driftSpeed;
 
 	protected override void Awake()
 	{
@@ -30,6 +27,8 @@ public class Person : AbstractIdealist
 		maxBounds = new BoundBox(personArea.bounds.center, personArea.bounds.size);
 
 		localBounds = CalculateLocalBounds(lean);
+
+		speed = GameSettings.Instance.PersonMaxSpeed;
 	}
 
 	protected override void Start()

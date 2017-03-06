@@ -26,8 +26,8 @@ public class UIPersonDebug : MonoBehaviour
 		xText.text = GetString(IdealType.A);
 		yText.text = GetString(IdealType.B);
 		zText.text = GetString(IdealType.C);
-		leanText.text = "Lean: " + person.lean.ToString("N3");
-		speed.text = "Speed: " + person.driftSpeed.ToString("N3");
+		leanText.text = "Lean: " + person.lean.ToString("N1");
+		speed.text = "Speed: " + person.speed.ToString("N2");
 		keyIdeal.text = "Key: " + person.Ideals.keyIdeal.ToString();
 	}
 

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   CrowdSize: 20
-  MaxDriftSpeed: 0.1
-  RoundTime: 60
-  MinMaxPolicyPoints: 0
+  PersonMaxSpeed: 0.75
+  RoundTime: 120
   ShowPersonDebug: 0

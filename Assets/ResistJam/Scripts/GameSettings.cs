@@ -6,9 +6,8 @@ public class GameSettings : ScriptableObject
 {
 	[Header("Settings")]
 	public int CrowdSize;
-	public float MaxDriftSpeed;
+	public float PersonMaxSpeed;
 	public float RoundTime;
-	public int MinMaxPolicyPoints;
 	[Header("Debug")]
 	public bool ShowPersonDebug;
 
