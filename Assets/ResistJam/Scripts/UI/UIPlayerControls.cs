@@ -107,6 +107,7 @@ public class UIPlayerControls : MonoBehaviour
 		if (selectedCardUi != null)
 		{
 			selectedCardUi.UnHighlight();
+			selectedCardUi = null;
 		}
 
 		currentCards.Clear();
