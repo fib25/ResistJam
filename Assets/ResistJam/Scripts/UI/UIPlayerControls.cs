@@ -12,6 +12,10 @@ public class UIPlayerControls : MonoBehaviour
 	//public Slider cSlider;
 
 	[SerializeField]
+	protected GameObject getReadyMessage;
+	[SerializeField]
+	protected GameObject inGame;
+	[SerializeField]
 	protected GameObject cardSelectTimerDisplay;
 
 	protected UICard[] cardUis;
@@ -20,6 +24,7 @@ public class UIPlayerControls : MonoBehaviour
 	protected Dictator dictator;
 	protected List<Person> allPeople;
 
+	protected bool isActive = false;
 	protected UICard selectedCardUi;
 	protected float cardSelectTimer;
 	protected float cardSelectTimerMaxScale;
@@ -41,6 +46,9 @@ public class UIPlayerControls : MonoBehaviour
 
 	protected void Start()
 	{
+		getReadyMessage.SetActive(true);
+		inGame.SetActive(false);
+
 		ResetCardSelectTimer();
 		ShowNewCards();
 	}
@@ -55,6 +63,8 @@ public class UIPlayerControls : MonoBehaviour
 
 	protected void Update()
 	{
+		if (!isActive) return;
+
 		cardSelectTimer -= Time.deltaTime;
 		if (cardSelectTimer <= 0f)
 		{
@@ -70,6 +80,17 @@ public class UIPlayerControls : MonoBehaviour
 		this.allPeople = allPeople;
 	}
 
+	public void StartShowingCards()
+	{
+		isActive = true;
+
+		getReadyMessage.SetActive(false);
+		inGame.SetActive(true);
+
+		ResetCardSelectTimer();
+		ShowNewCards();
+	}
+
 	public void ResetCardSelectTimer()
 	{
 		cardSelectTimer = GameSettings.Instance.CardSelectTime;
@@ -79,14 +100,6 @@ public class UIPlayerControls : MonoBehaviour
 		cardSelectTimerDisplay.transform.localScale = s;
 
 		UpdateTimerScale();
-	}
-
-	protected void UpdateTimerScale()
-	{
-		// Update timer scale.
-		Vector3 s = cardSelectTimerDisplay.transform.localScale;
-		s.x = (cardSelectTimer / GameSettings.Instance.CardSelectTime) * cardSelectTimerMaxScale;
-		cardSelectTimerDisplay.transform.localScale = s;
 	}
 
 	protected void ShowNewCards()
@@ -138,6 +151,14 @@ public class UIPlayerControls : MonoBehaviour
 		}
 
 		ShowNewCards();
+	}
+
+	protected void UpdateTimerScale()
+	{
+		// Update timer scale.
+		Vector3 s = cardSelectTimerDisplay.transform.localScale;
+		s.x = (cardSelectTimer / GameSettings.Instance.CardSelectTime) * cardSelectTimerMaxScale;
+		cardSelectTimerDisplay.transform.localScale = s;
 	}
 
 	public void OnCardPressed(UICard cardUi)
