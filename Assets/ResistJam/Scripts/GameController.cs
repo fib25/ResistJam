@@ -45,6 +45,7 @@ public class GameController : MonoBehaviour
 		for (int i = 0; i < GameSettings.Instance.CrowdSize; i++)
 		{
 			Person newPerson = GameObject.Instantiate<Person>(personPrefab);
+			newPerson.name = "Person_" + i.ToString("000");
 			newPerson.transform.SetParent(crowdTransform);
 
 			newPerson.UpdateLean(player, dictator);
@@ -85,8 +86,9 @@ public class GameController : MonoBehaviour
 					allPeople[i].UpdateLean(player, dictator);
 				}
 
-				if (allPeople[i].lean >= 5f || allPeople[i].lean <= 5f)
+				if (allPeople[i].lean <= -5f || allPeople[i].lean >= 5f)
 				{
+					Debug.Log("Stop lean " + allPeople[i].name + "!");
 					allPeople[i].allowLeanUpdate = false;
 				}
 			}

@@ -18,6 +18,7 @@ public class GameSettings : ScriptableObject
 	public int CrowdSize;
 	public float PersonMaxSpeed;
 	public float RoundTime;
+	public float CardSelectTime;
 	[Header("Debug")]
 	public bool ShowPersonDebug;
 	public bool ShowValuesOnCards;
