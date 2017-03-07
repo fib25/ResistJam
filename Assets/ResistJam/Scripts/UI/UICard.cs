@@ -44,6 +44,16 @@ public class UICard : MonoBehaviour
 		helperText.text = string.Format(helperTextFormat, agreePercent.ToString());
 	}
 
+	public void Highlight()
+	{
+		this.GetComponent<Image>().color = Color.yellow * 1f;
+	}
+
+	public void UnHighlight()
+	{
+		this.GetComponent<Image>().color = Color.white;
+	}
+
 	protected void OnCardClicked()
 	{
 		CardPressed(this);

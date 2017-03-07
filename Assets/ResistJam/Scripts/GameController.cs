@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour
 		InitCrowd();
 
 		playerControls.SetAllPeople(allPeople);
+		playerControls.enabled = false;
 
 		roundTimer = GameSettings.Instance.RoundTime;
 		UpdateTimerDisplay();
@@ -68,11 +69,13 @@ public class GameController : MonoBehaviour
 	protected void StartGame()
 	{
 		gameRunning = true;
+		playerControls.enabled = true;
 	}
 
 	protected void CompleteGame()
 	{
 		//gameRunning = false;
+		//playerControls.enabled = false;
 	}
 
 	protected void Update()

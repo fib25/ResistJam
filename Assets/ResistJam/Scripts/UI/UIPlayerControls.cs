@@ -11,11 +11,18 @@ public class UIPlayerControls : MonoBehaviour
 	//public Slider bSlider;
 	//public Slider cSlider;
 
+	[SerializeField]
+	protected GameObject cardSelectTimerDisplay;
+
 	protected UICard[] cardUis;
 	protected List<Card> currentCards = new List<Card>();
 	protected Player player;
 	protected Dictator dictator;
 	protected List<Person> allPeople;
+
+	protected UICard selectedCardUi;
+	protected float cardSelectTimer;
+	protected float cardSelectTimerMaxScale;
 
 	protected void Awake()
 	{
@@ -28,10 +35,13 @@ public class UIPlayerControls : MonoBehaviour
 			cardUis[i].cardIndex = i;
 			cardUis[i].CardPressed += OnCardPressed;
 		}
+
+		cardSelectTimerMaxScale = cardSelectTimerDisplay.transform.localScale.x;
 	}
 
 	protected void Start()
 	{
+		ResetCardSelectTimer();
 		ShowNewCards();
 	}
 
@@ -45,9 +55,14 @@ public class UIPlayerControls : MonoBehaviour
 
 	protected void Update()
 	{
-		//player.policyA = aSlider.value;
-		//player.policyB = bSlider.value;
-		//player.policyC = cSlider.value;
+		cardSelectTimer -= Time.deltaTime;
+		if (cardSelectTimer <= 0f)
+		{
+			ConfirmCardSelection();
+			ResetCardSelectTimer();
+		}
+
+		UpdateTimerScale();
 	}
 
 	public void SetAllPeople(List<Person> allPeople)
@@ -55,8 +70,32 @@ public class UIPlayerControls : MonoBehaviour
 		this.allPeople = allPeople;
 	}
 
+	public void ResetCardSelectTimer()
+	{
+		cardSelectTimer = GameSettings.Instance.CardSelectTime;
+
+		Vector3 s = cardSelectTimerDisplay.transform.localScale;
+		s.x = cardSelectTimerMaxScale;
+		cardSelectTimerDisplay.transform.localScale = s;
+
+		UpdateTimerScale();
+	}
+
+	protected void UpdateTimerScale()
+	{
+		// Update timer scale.
+		Vector3 s = cardSelectTimerDisplay.transform.localScale;
+		s.x = (cardSelectTimer / GameSettings.Instance.CardSelectTime) * cardSelectTimerMaxScale;
+		cardSelectTimerDisplay.transform.localScale = s;
+	}
+
 	protected void ShowNewCards()
 	{
+		if (selectedCardUi != null)
+		{
+			selectedCardUi.UnHighlight();
+		}
+
 		currentCards.Clear();
 
 		for (int i = 0; i < cardUis.Length; i++)
@@ -91,15 +130,31 @@ public class UIPlayerControls : MonoBehaviour
 		}
 	}
 
+	protected void ConfirmCardSelection()
+	{
+		if (selectedCardUi != null)
+		{
+			CardSelectedEvent(currentCards[selectedCardUi.cardIndex]);
+		}
+
+		ShowNewCards();
+	}
+
 	public void OnCardPressed(UICard cardUi)
 	{
-		CardSelectedEvent(currentCards[cardUi.cardIndex]);
+		if (selectedCardUi != null)
+		{
+			selectedCardUi.UnHighlight();
+		}
 
-		Card lowestCard = null;
+		selectedCardUi = cardUi;
+		cardUi.Highlight();
+
+		/*Card lowestCard = null;
 		float lowestScore = float.MaxValue;
 
 		// Get the lowest card score to add to the dictators score.
-		/*for (int i = 0; i < cardUis.Length; i++)
+		for (int i = 0; i < cardUis.Length; i++)
 		{
 			if (cardUis[i].cardIndex != cardUi.cardIndex)
 			{
@@ -111,10 +166,7 @@ public class UIPlayerControls : MonoBehaviour
 				}
 			}
 		}
-
 		Debug.Log("Update dictator " + lowestCard.idealType.ToString() + " " + lowestCard.value);
 		dictator.Ideals.AddToIdealValue(lowestCard.idealType, lowestCard.value);*/
-
-		ShowNewCards();
 	}
 }

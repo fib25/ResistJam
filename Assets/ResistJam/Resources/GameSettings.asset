@@ -14,6 +14,6 @@ MonoBehaviour:
   CrowdSize: 20
   PersonMaxSpeed: 0.75
   RoundTime: 90
-  CardSelectTime: 0
+  CardSelectTime: 3
   ShowPersonDebug: 0
   ShowValuesOnCards: 1
