@@ -87,12 +87,13 @@ public class Ideals
 
 	public void SetIdealValue(IdealType idealType, float value)
 	{
-		idealsDict[idealType] = value;
+		idealsDict[idealType] = Mathf.Clamp(value, -5f, 5f);
 	}
 
 	public void AddToIdealValue(IdealType idealType, float value)
 	{
 		idealsDict[idealType] += value;
+		idealsDict[idealType] = Mathf.Clamp(idealsDict[idealType], -5f, 5f);
 	}
 
 	protected float RandomValue(int min, int max)

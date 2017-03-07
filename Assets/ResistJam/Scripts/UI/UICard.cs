@@ -34,6 +34,13 @@ public class UICard : MonoBehaviour
 	public void SetCardDetails(Card card, int agreePercent)
 	{
 		messageText.text = card.message;
+
+		if (GameSettings.Instance.ShowValuesOnCards)
+		{
+			string operatorChar = (card.value < 0) ? "-" : "+";
+			messageText.text += " (" + card.idealType.ToString() + operatorChar + Mathf.Abs(card.value).ToString("#0") + ")";
+		}
+
 		helperText.text = string.Format(helperTextFormat, agreePercent.ToString());
 	}
 

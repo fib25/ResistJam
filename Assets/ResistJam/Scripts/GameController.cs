@@ -28,38 +28,50 @@ public class GameController : MonoBehaviour
 
 	protected void Start()
 	{
-		InitCrowd();
 		InitDictator();
 		InitPlayer();
+		InitCrowd();
 
 		playerControls.SetAllPeople(allPeople);
 
 		roundTimer = GameSettings.Instance.RoundTime;
-		gameRunning = true;
+		UpdateTimerDisplay();
+
+		this.PerformAction(2f, StartGame);
 	}
 
 	protected void InitCrowd()
 	{
 		for (int i = 0; i < GameSettings.Instance.CrowdSize; i++)
 		{
-			Person inst = GameObject.Instantiate<Person>(personPrefab);
-			inst.transform.SetParent(crowdTransform);
-			inst.transform.localPosition = Vector3.zero;
+			Person newPerson = GameObject.Instantiate<Person>(personPrefab);
+			newPerson.transform.SetParent(crowdTransform);
 
-			inst.lean = UnityEngine.Random.Range(0.4f, 0.6f);
+			newPerson.UpdateLean(player, dictator);
+			newPerson.SetInitialPosition();
 
-			allPeople.Add(inst);
+			allPeople.Add(newPerson);
 		}
 	}
 
 	protected void InitDictator()
 	{
-		dictator.RandomiseKeyIdeals();
+		//dictator.RandomiseKeyIdeals();
 	}
 
 	protected void InitPlayer()
 	{
 		//player.RandomiseIdeals();
+	}
+
+	protected void StartGame()
+	{
+		gameRunning = true;
+	}
+
+	protected void CompleteGame()
+	{
+		//gameRunning = false;
 	}
 
 	protected void Update()
@@ -68,11 +80,21 @@ public class GameController : MonoBehaviour
 		{
 			for (int i = 0; i < allPeople.Count; i++)
 			{
-				allPeople[i].UpdateLean(player, dictator);
+				if (allPeople[i].allowLeanUpdate)
+				{
+					allPeople[i].UpdateLean(player, dictator);
+				}
+
+				if (allPeople[i].lean >= 5f || allPeople[i].lean <= 5f)
+				{
+					allPeople[i].allowLeanUpdate = false;
+				}
 			}
 
 			roundTimer -= Time.deltaTime;
-			timerText.text = roundTimer.ToString("00");
+			if (roundTimer < 0f) roundTimer = 0f;
+
+			UpdateTimerDisplay();
 
 			if (roundTimer <= 0f)
 			{
@@ -81,13 +103,14 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	protected void CompleteGame()
+	protected void UpdateTimerDisplay()
 	{
-		//gameRunning = false;
+		timerText.text = Mathf.FloorToInt(roundTimer / 60f) + ":" + Mathf.FloorToInt(roundTimer % 60f).ToString("00");
 	}
 
 	protected void OnCardSelected(Card card)
 	{
 		player.Ideals.AddToIdealValue(card.idealType, card.value);
+		dictator.Ideals.AddToIdealValue(card.idealType, -card.value);
 	}
 }

@@ -14,7 +14,13 @@ MonoBehaviour:
   cards:
   - idealType: 0
     value: 1
-    message: A +1.
+    message: A is a force for good, but not your priority.
+  - idealType: 0
+    value: 2
+    message: A should be given more attention overall.
+  - idealType: 0
+    value: 3
+    message: You strongly believe in A. Nothing else will do!
   - idealType: 0
     value: -1
     message: A -1.

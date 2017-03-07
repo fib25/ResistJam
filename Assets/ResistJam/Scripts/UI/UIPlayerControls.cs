@@ -14,11 +14,13 @@ public class UIPlayerControls : MonoBehaviour
 	protected UICard[] cardUis;
 	protected List<Card> currentCards = new List<Card>();
 	protected Player player;
+	protected Dictator dictator;
 	protected List<Person> allPeople;
 
 	protected void Awake()
 	{
 		player = FindObjectOfType<Player>();
+		dictator = FindObjectOfType<Dictator>();
 		cardUis = FindObjectsOfType<UICard>();
 
 		for (int i = 0; i < cardUis.Length; i++)
@@ -92,6 +94,26 @@ public class UIPlayerControls : MonoBehaviour
 	public void OnCardPressed(UICard cardUi)
 	{
 		CardSelectedEvent(currentCards[cardUi.cardIndex]);
+
+		Card lowestCard = null;
+		float lowestScore = float.MaxValue;
+
+		// Get the lowest card score to add to the dictators score.
+		/*for (int i = 0; i < cardUis.Length; i++)
+		{
+			if (cardUis[i].cardIndex != cardUi.cardIndex)
+			{
+				Card card = currentCards[cardUis[i].cardIndex];
+				if (card.value < lowestScore)
+				{
+					lowestScore = card.value;
+					lowestCard = card;
+				}
+			}
+		}
+
+		Debug.Log("Update dictator " + lowestCard.idealType.ToString() + " " + lowestCard.value);
+		dictator.Ideals.AddToIdealValue(lowestCard.idealType, lowestCard.value);*/
 
 		ShowNewCards();
 	}

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CrowdSize: 20
   PersonMaxSpeed: 0.75
-  RoundTime: 120
-  ShowPersonDebug: 1
+  RoundTime: 90
+  ShowPersonDebug: 0

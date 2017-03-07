@@ -1,0 +1,25 @@
+{
+	"specificCards":{
+		"A":[
+			{"value":1,		"message":"My big long card message for A."},
+			{"value":2,		"message":"My big long card message for A."}
+		],
+		"B":[
+			{"value":1,		"message":"My big long card message for B."},
+			{"value":2,		"message":"My big long card message for B."}
+		]
+	},
+	"genericCards":[
+		{"value":1,		"message":"I think that $ideal is very important!"},
+		{"value":1,		"message":"$ideal is something something."},
+		{"value":2,		"message":"I think that $ideal is very important!"},
+		{"value":3,		"message":"I think that $ideal is very important!"},
+		{"value":4,		"message":"I think that $ideal is very important!"},
+		{"value":5,		"message":"I think that $ideal is very important!"},
+		{"value":-1,	"message":"I think that $ideal is very important!"},
+		{"value":-2,	"message":"I think that $ideal is very important!"},
+		{"value":-3,	"message":"I think that $ideal is very important!"},
+		{"value":-4,	"message":"I think that $ideal is very important!"},
+		{"value":-5,	"message":"I think that $ideal is very important!"},
+	]
+}

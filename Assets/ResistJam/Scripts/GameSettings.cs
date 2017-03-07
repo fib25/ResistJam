@@ -20,6 +20,7 @@ public class GameSettings : ScriptableObject
 	public float RoundTime;
 	[Header("Debug")]
 	public bool ShowPersonDebug;
+	public bool ShowValuesOnCards;
 
 	/// <summary>
 	/// Loads the GameSettings asset from the Resources folder.

@@ -12,6 +12,8 @@ public class Person : AbstractIdealist
 
 	[HideInInspector]
 	public float speed = 1f;
+	[HideInInspector]
+	public bool allowLeanUpdate = true;
 
 	protected Vector3 targetPos;
 	protected BoundBox maxBounds;
@@ -77,6 +79,19 @@ public class Person : AbstractIdealist
 
 		// Choose whether to show debug text.
 		debugDisplay.SetActive(showDebug && GameSettings.Instance.ShowPersonDebug);
+	}
+
+	public void SetInitialPosition()
+	{
+		localBounds = CalculateLocalBounds(lean);
+
+		Vector3 startPos = Vector3.zero;
+		startPos.x = UnityEngine.Random.Range(localBounds.Left * 0.25f, localBounds.Right * 0.25f);
+		startPos.y = UnityEngine.Random.Range(localBounds.Top, localBounds.Bottom);
+
+		targetPos = startPos;
+
+		this.transform.localPosition = startPos;
 	}
 
 	public void UpdateLean(Player player, Dictator dictator)
