@@ -49,7 +49,6 @@ public class GameController : MonoBehaviour
 			newPerson.transform.SetParent(crowdTransform);
 
 			newPerson.UpdateLean(player, dictator);
-			newPerson.SetInitialPosition();
 
 			allPeople.Add(newPerson);
 		}
@@ -88,7 +87,7 @@ public class GameController : MonoBehaviour
 					allPeople[i].UpdateLean(player, dictator);
 				}
 
-				if (allPeople[i].lean <= -5f || allPeople[i].lean >= 5f)
+				if (allPeople[i].Lean <= -5f || allPeople[i].Lean >= 5f)
 				{
 					Debug.Log("Stop lean " + allPeople[i].name + "!");
 					allPeople[i].allowLeanUpdate = false;

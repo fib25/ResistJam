@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 222597774899298652}
   - component: {fileID: 114412680968413256}
   m_Layer: 0
-  m_Name: Speed
+  m_Name: State
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,7 +311,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Speed: 99'
+  m_Text: State
 --- !u!114 &114516286978499218
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -427,7 +427,7 @@ MonoBehaviour:
   yText: {fileID: 114516286978499218}
   zText: {fileID: 114353530979005824}
   leanText: {fileID: 114105050580792256}
-  speed: {fileID: 114412680968413256}
+  stateText: {fileID: 114412680968413256}
   keyIdeal: {fileID: 114572106837784898}
 --- !u!114 &114685116482596268
 MonoBehaviour:
@@ -440,15 +440,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587b4bc632971764e94ef2d8d649879e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  policyA: 0
-  policyB: 0
-  policyC: 0
-  speed: 1
-  lean: 0.5
   showDebug: 1
   debugDisplay: {fileID: 1963809641697022}
-  driftAmount: 0
-  driftSpeed: 0
+  allowLeanUpdate: 1
 --- !u!114 &114845420956748450
 MonoBehaviour:
   m_ObjectHideFlags: 1

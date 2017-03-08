@@ -19,6 +19,11 @@ public class GameSettings : ScriptableObject
 	public float PersonMaxSpeed;
 	public float RoundTime;
 	public float CardSelectTime;
+	[Header("Sheep")]
+	public float IdleTime;
+	public float WanderSpeed;
+	public float MoveToLeanSpeed;
+	public float WanderRange;
 	[Header("Debug")]
 	public bool ShowPersonDebug;
 	public bool ShowValuesOnCards;

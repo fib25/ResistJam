@@ -10,7 +10,7 @@ public class UIPersonDebug : MonoBehaviour
 	public Text yText;
 	public Text zText;
 	public Text leanText;
-	public Text speed;
+	public Text stateText;
 	public Text keyIdeal;
 
 	protected void Start()
@@ -18,7 +18,7 @@ public class UIPersonDebug : MonoBehaviour
 		Color randomColour = new Color(UnityEngine.Random.Range(0.5f, 1f),
 									   UnityEngine.Random.Range(0.5f, 1f),
 									   UnityEngine.Random.Range(0.5f, 1f));
-		xText.color = yText.color = zText.color = leanText.color = speed.color = keyIdeal.color = randomColour;
+		xText.color = yText.color = zText.color = leanText.color = stateText.color = keyIdeal.color = randomColour;
 	}
 
 	protected void Update()
@@ -26,8 +26,8 @@ public class UIPersonDebug : MonoBehaviour
 		xText.text = GetString(IdealType.A);
 		yText.text = GetString(IdealType.B);
 		zText.text = GetString(IdealType.C);
-		leanText.text = "Lean: " + person.lean.ToString("N1");
-		speed.text = "Speed: " + person.speed.ToString("N2");
+		leanText.text = "Lean: " + person.Lean.ToString("N1");
+		stateText.text = person.State.ToString().Replace("PersonState.", "");
 		keyIdeal.text = "Key: " + person.Ideals.KeyIdeal.ToString();
 	}
 
