@@ -2438,7 +2438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0e2cf56a5f95a45978f2605a6c4b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  personPrefab: {fileID: 114685116482596268, guid: b7adc3b4da653114b9623d3aaa1715e2,
+  sheepPrefab: {fileID: 114685116482596268, guid: b7adc3b4da653114b9623d3aaa1715e2,
     type: 2}
   timerText: {fileID: 1737630022}
 --- !u!1 &1537169949

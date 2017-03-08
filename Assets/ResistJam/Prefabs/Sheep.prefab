@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4463476917784434}
   - component: {fileID: 114685116482596268}
   m_Layer: 0
-  m_Name: Person
+  m_Name: Sheep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 114845420956748450}
   - component: {fileID: 114650855005903506}
   m_Layer: 0
-  m_Name: Canvas_PersonDebug
+  m_Name: Canvas_SheepDebug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -419,10 +419,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1963809641697022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6e16168193358148aa7d81f84cfac26, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d4399a1242bd614bb58ca497d7217af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  person: {fileID: 114685116482596268}
+  sheep: {fileID: 114685116482596268}
   xText: {fileID: 114613447395481398}
   yText: {fileID: 114516286978499218}
   zText: {fileID: 114353530979005824}
@@ -437,7 +437,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1179503834145602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 587b4bc632971764e94ef2d8d649879e, type: 3}
+  m_Script: {fileID: 11500000, guid: 70dd6684417c39d45905d0e29c236de4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   showDebug: 1

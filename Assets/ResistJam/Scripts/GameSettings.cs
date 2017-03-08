@@ -16,7 +16,6 @@ public class GameSettings : ScriptableObject
 
 	[Header("Settings")]
 	public int CrowdSize;
-	public float PersonMaxSpeed;
 	public float RoundTime;
 	public float CardSelectTime;
 	[Header("Sheep")]
@@ -25,7 +24,7 @@ public class GameSettings : ScriptableObject
 	public float MoveToLeanSpeed;
 	public float WanderRange;
 	[Header("Debug")]
-	public bool ShowPersonDebug;
+	public bool ShowSheepDebug;
 	public bool ShowValuesOnCards;
 
 	/// <summary>

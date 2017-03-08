@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   CrowdSize: 20
-  PersonMaxSpeed: 0.75
   RoundTime: 90
   CardSelectTime: 5
   IdleTime: 5
   WanderSpeed: 1
   MoveToLeanSpeed: 2.5
   WanderRange: 1.75
-  ShowPersonDebug: 0
+  ShowSheepDebug: 0
   ShowValuesOnCards: 1

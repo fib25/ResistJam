@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PersonState
+public enum SheepState
 {
 	Idle,
 	Wandering,
 	MoveToLean
 }
 
-public class Person : AbstractIdealist
+public class Sheep : AbstractIdealist
 {
 	[Header("Debug")]
 	public bool showDebug = false;
@@ -20,7 +20,7 @@ public class Person : AbstractIdealist
 
 	protected float _lean;
 	protected float prevLean;
-	protected PersonState _state;
+	protected SheepState _state;
 	protected Vector3 targetPos;
 	protected BoundBox maxBounds;
 	protected BoundBox localBounds;
@@ -29,7 +29,7 @@ public class Person : AbstractIdealist
 	protected GameSettings settings;
 
 	public float Lean { get { return _lean; } }
-	public PersonState State { get { return _state; } }
+	public SheepState State { get { return _state; } }
 
 	protected override void Awake()
 	{
@@ -39,8 +39,8 @@ public class Person : AbstractIdealist
 
 		RandomiseKeyIdeals();
 
-		BoxCollider2D personArea = GameObject.Find("CrowdArea").GetComponent<BoxCollider2D>();
-		maxBounds = new BoundBox(personArea.bounds.center, personArea.bounds.size);
+		BoxCollider2D sheepArea = GameObject.Find("CrowdArea").GetComponent<BoxCollider2D>();
+		maxBounds = new BoundBox(sheepArea.bounds.center, sheepArea.bounds.size);
 
 		localBounds = CalculateLocalBounds(_lean);
 	}
@@ -55,7 +55,7 @@ public class Person : AbstractIdealist
 		SetInitialPosition();
 		prevLean = _lean;
 
-		SetState(PersonState.Idle);
+		SetState(SheepState.Idle);
 		idleTimer = UnityEngine.Random.Range(0f, settings.IdleTime);
 	}
 
@@ -66,7 +66,7 @@ public class Person : AbstractIdealist
 		StateMachineUpdate();
 
 		// Choose whether to show debug text.
-		debugDisplay.SetActive(showDebug && GameSettings.Instance.ShowPersonDebug);
+		debugDisplay.SetActive(showDebug && GameSettings.Instance.ShowSheepDebug);
 	}
 
 	public void SetInitialPosition()
@@ -93,17 +93,17 @@ public class Person : AbstractIdealist
 		_lean = playerResult - dictatorResult;
 	}
 
-	public void SetState(PersonState newState)
+	public void SetState(SheepState newState)
 	{
 		Debug.Log("Set new state: " + newState.ToString());
 
-		if (newState == PersonState.Idle)
+		if (newState == SheepState.Idle)
 		{
 			idleTimer = GameSettings.Instance.IdleTime;
 
 			// TODO: Change to eat sprite? Or do something.
 		}
-		else if (newState == PersonState.Wandering)
+		else if (newState == SheepState.Wandering)
 		{
 			float x = UnityEngine.Random.Range(this.transform.position.x - settings.WanderRange, this.transform.position.x + settings.WanderRange);
 			float y = UnityEngine.Random.Range(localBounds.Top, localBounds.Bottom);
@@ -119,7 +119,7 @@ public class Person : AbstractIdealist
 
 			targetPos = new Vector3(x, y, 0f);
 		}
-		else if (newState == PersonState.MoveToLean)
+		else if (newState == SheepState.MoveToLean)
 		{
 			// Target area.
 			localBounds = CalculateLocalBounds(_lean);
@@ -138,20 +138,20 @@ public class Person : AbstractIdealist
 
 		if (_lean != prevLean)
 		{
-			SetState(PersonState.MoveToLean);
+			SetState(SheepState.MoveToLean);
 		}
 
 		switch (_state)
 		{
-		case PersonState.Idle:
+		case SheepState.Idle:
 			IdleStateUpdate();
 			break;
 
-		case PersonState.Wandering:
+		case SheepState.Wandering:
 			WanderStateUpdate();
 			break;
 
-		case PersonState.MoveToLean:
+		case SheepState.MoveToLean:
 			MoveToLeanStateUpdate();
 			break;
 		}
@@ -165,7 +165,7 @@ public class Person : AbstractIdealist
 
 		if (idleTimer <= 0f)
 		{
-			SetState(PersonState.Wandering);
+			SetState(SheepState.Wandering);
 		}
 	}
 
@@ -187,7 +187,7 @@ public class Person : AbstractIdealist
 		if (targetVec.sqrMagnitude < moveVec.sqrMagnitude)
 		{
 			this.transform.position = targetPos;
-			SetState(PersonState.Idle);
+			SetState(SheepState.Idle);
 			idleTimer = UnityEngine.Random.Range(0f, settings.IdleTime);
 		}
 		else

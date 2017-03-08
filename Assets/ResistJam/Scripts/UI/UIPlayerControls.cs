@@ -22,7 +22,7 @@ public class UIPlayerControls : MonoBehaviour
 	protected List<Card> currentCards = new List<Card>();
 	protected Player player;
 	protected Dictator dictator;
-	protected List<Person> allPeople;
+	protected List<Sheep> allSheep;
 
 	protected bool isActive = false;
 	protected UICard selectedCardUi;
@@ -75,9 +75,9 @@ public class UIPlayerControls : MonoBehaviour
 		UpdateTimerScale();
 	}
 
-	public void SetAllPeople(List<Person> allPeople)
+	public void SetAllSheep(List<Sheep> allSheep)
 	{
-		this.allPeople = allPeople;
+		this.allSheep = allSheep;
 	}
 
 	public void StartShowingCards()
@@ -122,9 +122,9 @@ public class UIPlayerControls : MonoBehaviour
 			Card card = CardCollection.Instance.GetRandomCardFromPool();
 
 			int agreeCount = 0;
-			for (int j = 0; j < allPeople.Count; j++)
+			for (int j = 0; j < allSheep.Count; j++)
 			{
-				Person p = allPeople[j];
+				Sheep p = allSheep[j];
 				float pIdealVal = p.Ideals.GetIdealValue(card.idealType);
 
 				if (card.value > 0 && pIdealVal > 0)
@@ -137,7 +137,7 @@ public class UIPlayerControls : MonoBehaviour
 				}
 			}
 
-			int agreePercent = (int)(((float)agreeCount / (float)allPeople.Count) * 100f);
+			int agreePercent = (int)(((float)agreeCount / (float)allSheep.Count) * 100f);
 
 			currentCards.Add(card);
 			cardUis[i].SetCardDetails(card, agreePercent);

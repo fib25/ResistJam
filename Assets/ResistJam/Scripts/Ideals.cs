@@ -15,22 +15,22 @@ public class Ideals
 
 	public IdealType KeyIdeal { get; private set; }
 
-	public static float CompareIdeals(Ideals person, Ideals other)
+	public static float CompareIdeals(Ideals sheep, Ideals other)
 	{
 		float result = 0;
 
-		foreach (IdealType idealType in person.idealsDict.Keys)
+		foreach (IdealType idealType in sheep.idealsDict.Keys)
 		{
-			if (person.idealsDict[idealType] > 0)
+			if (sheep.idealsDict[idealType] > 0)
 			{
-				if (other.idealsDict[idealType] >= person.idealsDict[idealType])
+				if (other.idealsDict[idealType] >= sheep.idealsDict[idealType])
 				{
 					result++;
 				}
 			}
 			else
 			{
-				if (other.idealsDict[idealType] <= person.idealsDict[idealType])
+				if (other.idealsDict[idealType] <= sheep.idealsDict[idealType])
 				{
 					result++;
 				}

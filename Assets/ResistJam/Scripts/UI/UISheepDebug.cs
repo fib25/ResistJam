@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIPersonDebug : MonoBehaviour
+public class UISheepDebug : MonoBehaviour
 {
-	public Person person;
+	public Sheep sheep;
 	public Text xText;
 	public Text yText;
 	public Text zText;
@@ -26,13 +26,13 @@ public class UIPersonDebug : MonoBehaviour
 		xText.text = GetString(IdealType.A);
 		yText.text = GetString(IdealType.B);
 		zText.text = GetString(IdealType.C);
-		leanText.text = "Lean: " + person.Lean.ToString("N1");
-		stateText.text = person.State.ToString().Replace("PersonState.", "");
-		keyIdeal.text = "Key: " + person.Ideals.KeyIdeal.ToString();
+		leanText.text = "Lean: " + sheep.Lean.ToString("N1");
+		stateText.text = sheep.State.ToString().Replace("SheepState.", "");
+		keyIdeal.text = "Key: " + sheep.Ideals.KeyIdeal.ToString();
 	}
 
 	protected string GetString(IdealType idealType)
 	{
-		return idealType.ToString().Replace("IdealType.", "") + ": " + person.Ideals.GetIdealValue(idealType).ToString("N1");
+		return idealType.ToString().Replace("IdealType.", "") + ": " + sheep.Ideals.GetIdealValue(idealType).ToString("N1");
 	}
 }

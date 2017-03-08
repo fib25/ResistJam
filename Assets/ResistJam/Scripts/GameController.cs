@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-	public Person personPrefab;
+	public Sheep sheepPrefab;
 	public UnityEngine.UI.Text timerText;
 
 	protected Transform crowdTransform;
 	protected Dictator dictator;
 	protected Player player;
-	protected List<Person> allPeople = new List<Person>();
+	protected List<Sheep> allSheep = new List<Sheep>();
 	protected UIPlayerControls playerControls;
 
 	protected float roundTimer;
@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour
 		InitPlayer();
 		InitCrowd();
 
-		playerControls.SetAllPeople(allPeople);
+		playerControls.SetAllSheep(allSheep);
 
 		roundTimer = GameSettings.Instance.RoundTime;
 		UpdateTimerDisplay();
@@ -42,15 +42,24 @@ public class GameController : MonoBehaviour
 
 	protected void InitCrowd()
 	{
+		List<string> names = new List<string>(new string[]{"Jim", "Michael", "Jules", "Nat"});
+		int gap = GameSettings.Instance.CrowdSize / names.Count;
+
 		for (int i = 0; i < GameSettings.Instance.CrowdSize; i++)
 		{
-			Person newPerson = GameObject.Instantiate<Person>(personPrefab);
-			newPerson.name = "Person_" + i.ToString("000");
-			newPerson.transform.SetParent(crowdTransform);
+			Sheep newSheep = GameObject.Instantiate<Sheep>(sheepPrefab);
+			newSheep.name = "Sheep_" + i.ToString("000");
+			if (GameSettings.Instance.CrowdSize >= 10 && i % gap == 0 && names.Count > 0)
+			{
+				newSheep.name = "Sheep_" + names[0];
+				names.RemoveAt(0);
+			}
 
-			newPerson.UpdateLean(player, dictator);
+			newSheep.transform.SetParent(crowdTransform);
 
-			allPeople.Add(newPerson);
+			newSheep.UpdateLean(player, dictator);
+
+			allSheep.Add(newSheep);
 		}
 	}
 
@@ -80,17 +89,17 @@ public class GameController : MonoBehaviour
 	{
 		if (gameRunning)
 		{
-			for (int i = 0; i < allPeople.Count; i++)
+			for (int i = 0; i < allSheep.Count; i++)
 			{
-				if (allPeople[i].allowLeanUpdate)
+				if (allSheep[i].allowLeanUpdate)
 				{
-					allPeople[i].UpdateLean(player, dictator);
+					allSheep[i].UpdateLean(player, dictator);
 				}
 
-				if (allPeople[i].Lean <= -5f || allPeople[i].Lean >= 5f)
+				if (allSheep[i].Lean <= -5f || allSheep[i].Lean >= 5f)
 				{
-					Debug.Log("Stop lean " + allPeople[i].name + "!");
-					allPeople[i].allowLeanUpdate = false;
+					Debug.Log("Stop lean " + allSheep[i].name + "!");
+					allSheep[i].allowLeanUpdate = false;
 				}
 			}
 
