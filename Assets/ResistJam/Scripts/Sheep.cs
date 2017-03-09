@@ -95,7 +95,7 @@ public class Sheep : AbstractIdealist
 
 	public void SetState(SheepState newState)
 	{
-		Debug.Log("Set new state: " + newState.ToString());
+		//Debug.Log("Set new state: " + newState.ToString());
 
 		if (newState == SheepState.Idle)
 		{

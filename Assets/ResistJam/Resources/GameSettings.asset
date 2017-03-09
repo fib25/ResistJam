@@ -14,6 +14,8 @@ MonoBehaviour:
   CrowdSize: 20
   RoundTime: 90
   CardSelectTime: 5
+  HeadlineRepeatTime: 20
+  HeadlineChoiceTime: 5
   IdleTime: 5
   WanderSpeed: 1
   MoveToLeanSpeed: 2.5

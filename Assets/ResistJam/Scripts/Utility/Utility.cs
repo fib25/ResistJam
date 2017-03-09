@@ -19,4 +19,27 @@ public static class Utility
 			action();
 		}
 	}
+
+	public static T[] GetEnumValues<T>(params T[] excludeValues)
+	{
+		T[] values = (T[])Enum.GetValues(typeof(T));
+		List<T> output = new List<T>();
+
+		for (int i = 0; i < values.Length; i++)
+		{
+			bool excluded = false;
+			for (int j = 0; j < excludeValues.Length; j++)
+			{
+				if (values[i].Equals(excludeValues[j]))
+				{
+					excluded = true;
+					break;
+				}
+			}
+
+			if (!excluded) output.Add(values[i]);
+		}
+
+		return output.ToArray();
+	}
 }

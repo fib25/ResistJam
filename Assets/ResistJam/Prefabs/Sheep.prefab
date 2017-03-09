@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222852774321690150}
   - component: {fileID: 114353530979005824}
   m_Layer: 0
-  m_Name: Z
+  m_Name: C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 222212366848265704}
   - component: {fileID: 114613447395481398}
   m_Layer: 0
-  m_Name: X
+  m_Name: A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 222756195516772178}
   - component: {fileID: 114516286978499218}
   m_Layer: 0
-  m_Name: Y
+  m_Name: B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -257,7 +257,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Z: 99'
+  m_Text: 'C: 99'
 --- !u!114 &114381665497337436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -344,7 +344,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Y: 99'
+  m_Text: 'B: 99'
 --- !u!114 &114572106837784898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -410,7 +410,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'X: 99'
+  m_Text: 'A: 99'
 --- !u!114 &114650855005903506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -423,9 +423,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sheep: {fileID: 114685116482596268}
-  xText: {fileID: 114613447395481398}
-  yText: {fileID: 114516286978499218}
-  zText: {fileID: 114353530979005824}
+  aText: {fileID: 114613447395481398}
+  bText: {fileID: 114516286978499218}
+  cText: {fileID: 114353530979005824}
   leanText: {fileID: 114105050580792256}
   stateText: {fileID: 114412680968413256}
   keyIdeal: {fileID: 114572106837784898}

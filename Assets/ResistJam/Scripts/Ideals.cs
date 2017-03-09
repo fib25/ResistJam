@@ -9,6 +9,13 @@ public enum IdealType
 	C
 }
 
+public enum IdealLean
+{
+	Negative = -1,
+	Neutral = 0,
+	Positive = 1
+}
+
 public class Ideals
 {
 	public Dictionary<IdealType, float> idealsDict = new Dictionary<IdealType, float>();
@@ -88,6 +95,15 @@ public class Ideals
 	public void SetIdealValue(IdealType idealType, float value)
 	{
 		idealsDict[idealType] = Mathf.Clamp(value, -5f, 5f);
+	}
+
+	public IdealLean GetIdealLean(IdealType idealType)
+	{
+		float val = idealsDict[idealType];
+
+		if (val == 0f) return IdealLean.Neutral;
+		else if (val > 0f) return IdealLean.Positive;
+		else return IdealLean.Negative;
 	}
 
 	public void AddToIdealValue(IdealType idealType, float value)

@@ -19,7 +19,7 @@ public class UIIdealsDebug : MonoBehaviour
 
 	protected string GetString(IdealType idealType)
 	{
-		return idealType.ToString().Replace("IdealType.", "") + ": " + idealist.Ideals.GetIdealValue(idealType).ToString("N1");
+		return idealType.ToString() + ": " + idealist.Ideals.GetIdealValue(idealType).ToString("N1");
 	}
 
 }

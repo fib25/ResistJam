@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
 	protected Player player;
 	protected List<Sheep> allSheep = new List<Sheep>();
 	protected UIPlayerControls playerControls;
+	protected UINewsHeadline newsHeadline;
 
 	protected float roundTimer;
 	protected bool gameRunning = false;
@@ -22,6 +23,9 @@ public class GameController : MonoBehaviour
 		player = FindObjectOfType<Player>();
 		playerControls = FindObjectOfType<UIPlayerControls>();
 		playerControls.CardSelectedEvent += OnCardSelected;
+		newsHeadline = FindObjectOfType<UINewsHeadline>();
+		newsHeadline.HeadlineResolvedEvent += OnHeadlineResolved;
+		newsHeadline.gameObject.SetActive(false);
 
 		crowdTransform = GameObject.Find("Crowd").transform;
 	}
@@ -77,6 +81,7 @@ public class GameController : MonoBehaviour
 	{
 		gameRunning = true;
 		playerControls.StartShowingCards();
+		StartNewsHeadlineCountdown();
 	}
 
 	protected void CompleteGame()
@@ -94,12 +99,12 @@ public class GameController : MonoBehaviour
 				if (allSheep[i].allowLeanUpdate)
 				{
 					allSheep[i].UpdateLean(player, dictator);
-				}
 
-				if (allSheep[i].Lean <= -5f || allSheep[i].Lean >= 5f)
-				{
-					Debug.Log("Stop lean " + allSheep[i].name + "!");
-					allSheep[i].allowLeanUpdate = false;
+					if (allSheep[i].Lean <= -3f || allSheep[i].Lean >= 3f)
+					{
+						Debug.Log("Stop lean " + allSheep[i].name + "!");
+						allSheep[i].allowLeanUpdate = false;
+					}
 				}
 			}
 
@@ -115,6 +120,29 @@ public class GameController : MonoBehaviour
 		}
 	}
 
+	protected void StartNewsHeadlineCountdown()
+	{
+		this.PerformAction(GameSettings.Instance.HeadlineRepeatTime, ShowNewsHeadline);
+	}
+
+	protected void ShowNewsHeadline()
+	{
+		// Randomise a news headline.
+		IdealType[] ideals = Utility.GetEnumValues<IdealType>();
+		IdealType headlineIdeal = ideals[UnityEngine.Random.Range(0, ideals.Length)];
+		IdealLean headlineLean = UnityEngine.Random.value > 0.5f ? IdealLean.Positive : IdealLean.Negative;
+		string headline = "Headline is " + headlineLean.ToString() + " " + headlineIdeal.ToString() + "!";
+
+		newsHeadline.InitHeadline(headlineIdeal, headlineLean, headline);
+		newsHeadline.Show();
+
+		StartNewsHeadlineCountdown();
+
+		this.PerformAction(GameSettings.Instance.HeadlineChoiceTime, () => {
+			newsHeadline.Hide();
+		});
+	}
+
 	protected void UpdateTimerDisplay()
 	{
 		timerText.text = Mathf.FloorToInt(roundTimer / 60f) + ":" + Mathf.FloorToInt(roundTimer % 60f).ToString("00");
@@ -124,5 +152,23 @@ public class GameController : MonoBehaviour
 	{
 		player.Ideals.AddToIdealValue(card.idealType, card.value);
 		dictator.Ideals.AddToIdealValue(card.idealType, -card.value);
+	}
+
+	protected void OnHeadlineResolved(IdealType idealType, IdealLean lean, HeadlineResponse response)
+	{
+		newsHeadline.Hide();
+
+		if (response == HeadlineResponse.FakeNews)
+		{
+			// Flip all sheep's opinions that match the idealType and lean to their opposite.
+			for (int i = 0; i < allSheep.Count; i++)
+			{
+				Sheep sheep = allSheep[i];
+				if (sheep.Ideals.GetIdealLean(idealType) == lean)
+				{
+					sheep.Ideals.SetIdealValue(idealType, -sheep.Ideals.GetIdealValue(idealType));
+				}
+			}
+		}
 	}
 }

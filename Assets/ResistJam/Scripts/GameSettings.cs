@@ -18,6 +18,9 @@ public class GameSettings : ScriptableObject
 	public int CrowdSize;
 	public float RoundTime;
 	public float CardSelectTime;
+	[Header("Headline")]
+	public float HeadlineRepeatTime;
+	public float HeadlineChoiceTime;
 	[Header("Sheep")]
 	public float IdleTime;
 	public float WanderSpeed;
