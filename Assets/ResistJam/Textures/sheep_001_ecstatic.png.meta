@@ -94,7 +94,7 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-  spritePackingTag: sheep
+  spritePackingTag: atlas
   userData: 
   assetBundleName: 
   assetBundleVariant: 
