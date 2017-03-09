@@ -20,12 +20,13 @@ public class GameSettings : ScriptableObject
 	public float CardSelectTime;
 	[Header("Headline")]
 	public float HeadlineRepeatTime;
-	public float HeadlineChoiceTime;
+	public float HeadlineOnScreenTime;
 	[Header("Sheep")]
 	public float IdleTime;
 	public float WanderSpeed;
 	public float MoveToLeanSpeed;
 	public float WanderRange;
+	public float NewspaperReadTime;
 	[Header("Debug")]
 	public bool ShowSheepDebug;
 	public bool ShowValuesOnCards;

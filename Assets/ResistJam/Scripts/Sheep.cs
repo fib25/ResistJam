@@ -6,11 +6,15 @@ public enum SheepState
 {
 	Idle,
 	Wandering,
-	MoveToLean
+	MoveToLean,
+	Newspaper
 }
 
 public class Sheep : AbstractIdealist
 {
+	[SerializeField]
+	protected GameObject newspaperDisplay;
+
 	[Header("Debug")]
 	public bool showDebug = false;
 	public GameObject debugDisplay;
@@ -21,9 +25,11 @@ public class Sheep : AbstractIdealist
 	protected float _lean;
 	protected float prevLean;
 	protected SheepState _state;
+	protected SheepState _prevState;
 	protected Vector3 targetPos;
 	protected BoundBox maxBounds;
 	protected BoundBox localBounds;
+	protected bool goToNewspaperNext = false;
 
 	protected float idleTimer;
 	protected GameSettings settings;
@@ -57,6 +63,7 @@ public class Sheep : AbstractIdealist
 
 		SetState(SheepState.Idle);
 		idleTimer = UnityEngine.Random.Range(0f, settings.IdleTime);
+		newspaperDisplay.SetActive(false);
 	}
 
 	protected override void Update()
@@ -97,9 +104,31 @@ public class Sheep : AbstractIdealist
 	{
 		//Debug.Log("Set new state: " + newState.ToString());
 
+		_prevState = _state;
+		_state = newState;
+
+		if (goToNewspaperNext && _prevState == SheepState.MoveToLean)
+		{
+			SetState(SheepState.Newspaper);
+			goToNewspaperNext = false;
+			return;
+		}
+
+		if (_prevState == SheepState.Newspaper)
+		{
+			newspaperDisplay.SetActive(false);
+		}
+
 		if (newState == SheepState.Idle)
 		{
-			idleTimer = GameSettings.Instance.IdleTime;
+			if (_prevState == SheepState.MoveToLean || _prevState == SheepState.Newspaper)
+			{
+				idleTimer = UnityEngine.Random.Range(0f, settings.IdleTime);
+			}
+			else
+			{
+				idleTimer = settings.IdleTime;
+			}
 
 			// TODO: Change to eat sprite? Or do something.
 		}
@@ -128,14 +157,27 @@ public class Sheep : AbstractIdealist
 
 			// TODO: Change to rushing sprite? Or do something.
 		}
+		else if (newState == SheepState.Newspaper)
+		{
+			// Change sprite to newspaper reading!
+			if (!goToNewspaperNext && _prevState == SheepState.MoveToLean)
+			{
+				goToNewspaperNext = true;
+				_state = SheepState.MoveToLean;
+				return;
+			}
 
-		_state = newState;
+			newspaperDisplay.SetActive(true);
+
+			/*this.PerformAction(settings.NewspaperReadTime, () => {
+				newspaperDisplay.SetActive(false);
+				this.SetState(SheepState.MoveToLean);
+			});*/
+		}
 	}
 
 	protected void StateMachineUpdate()
 	{
-		//Debug.Log("Update state: " + state.ToString());
-
 		if (_lean != prevLean)
 		{
 			SetState(SheepState.MoveToLean);
@@ -153,6 +195,10 @@ public class Sheep : AbstractIdealist
 
 		case SheepState.MoveToLean:
 			MoveToLeanStateUpdate();
+			break;
+
+		case SheepState.Newspaper:
+			//
 			break;
 		}
 
@@ -187,8 +233,14 @@ public class Sheep : AbstractIdealist
 		if (targetVec.sqrMagnitude < moveVec.sqrMagnitude)
 		{
 			this.transform.position = targetPos;
-			SetState(SheepState.Idle);
-			idleTimer = UnityEngine.Random.Range(0f, settings.IdleTime);
+			if (goToNewspaperNext)
+			{
+				SetState(SheepState.Newspaper);
+			}
+			else
+			{
+				SetState(SheepState.Idle);
+			}
 		}
 		else
 		{

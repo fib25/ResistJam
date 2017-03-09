@@ -80,6 +80,16 @@ public class UIPlayerControls : MonoBehaviour
 		this.allSheep = allSheep;
 	}
 
+	public void Show()
+	{
+		this.gameObject.SetActive(true);
+	}
+
+	public void Hide()
+	{
+		this.gameObject.SetActive(false);
+	}
+
 	public void StartShowingCards()
 	{
 		isActive = true;
@@ -102,8 +112,10 @@ public class UIPlayerControls : MonoBehaviour
 		UpdateTimerScale();
 	}
 
-	protected void ShowNewCards()
+	public void ShowNewCards()
 	{
+		ResetCardSelectTimer();
+
 		if (selectedCardUi != null)
 		{
 			selectedCardUi.UnHighlight();

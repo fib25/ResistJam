@@ -3,15 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum HeadlineResponse
-{
-	NoResponse,
-	FakeNews
-}
-
 public class UINewsHeadline : MonoBehaviour
 {
-	public event System.Action<IdealType, IdealLean, HeadlineResponse> HeadlineResolvedEvent = delegate { };
+	public event System.Action<IdealType, IdealLean> HeadlineResolvedEvent = delegate { };
 
 	[SerializeField]
 	protected Text headlineText;
@@ -35,27 +29,26 @@ public class UINewsHeadline : MonoBehaviour
 
 	public void Show()
 	{
+		if (this.gameObject.activeSelf) return;
+
 		this.gameObject.SetActive(true);
 	}
 
 	public void Hide()
 	{
+		if (!this.gameObject.activeSelf) return;
+
 		this.gameObject.SetActive(false);
 
 		if (!responded && isHeadlineInitialised)
 		{
-			ResolveHeadline(HeadlineResponse.NoResponse);
+			ResolveHeadline();
 		}
 	}
 
-	protected void ResolveHeadline(HeadlineResponse response)
+	protected void ResolveHeadline()
 	{
 		responded = true;
-		HeadlineResolvedEvent(currentIdeal, idealLean, response);
-	}
-
-	public void OnFakeNewsButtonPressed()
-	{
-		ResolveHeadline(HeadlineResponse.FakeNews);
+		HeadlineResolvedEvent(currentIdeal, idealLean);
 	}
 }
