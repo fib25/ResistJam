@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour
 
 	protected void InitCrowd()
 	{
-		List<string> names = new List<string>(new string[]{"Jim", "Michael", "Jules", "Nat"});
+		List<string> names = new List<string>(new string[]{"Jim", "Michael", "Jules", "Nat", "Joe"});
 		int gap = GameSettings.Instance.CrowdSize / names.Count;
 
 		for (int i = 0; i < GameSettings.Instance.CrowdSize; i++)

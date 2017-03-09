@@ -33,6 +33,7 @@ public class Sheep : AbstractIdealist
 
 	protected float idleTimer;
 	protected GameSettings settings;
+	protected float halfScreenHeight;
 
 	public float Lean { get { return _lean; } }
 	public SheepState State { get { return _state; } }
@@ -47,8 +48,9 @@ public class Sheep : AbstractIdealist
 
 		BoxCollider2D sheepArea = GameObject.Find("CrowdArea").GetComponent<BoxCollider2D>();
 		maxBounds = new BoundBox(sheepArea.bounds.center, sheepArea.bounds.size);
-
 		localBounds = CalculateLocalBounds(_lean);
+
+		halfScreenHeight = Camera.main.orthographicSize;
 	}
 
 	protected override void Start()
@@ -71,6 +73,11 @@ public class Sheep : AbstractIdealist
 		base.Update();
 
 		StateMachineUpdate();
+
+		// Update z depth for sheep sorting.
+		Vector3 pos = this.transform.position;
+		pos.z = Mathf.Lerp(-10f, 0f, Mathf.InverseLerp(-halfScreenHeight, halfScreenHeight, pos.y));
+		this.transform.position = pos;
 
 		// Choose whether to show debug text.
 		debugDisplay.SetActive(showDebug && GameSettings.Instance.ShowSheepDebug);
@@ -228,7 +235,9 @@ public class Sheep : AbstractIdealist
 	protected void MoveToTargetPos(float speed)
 	{
 		Vector3 targetVec = targetPos - this.transform.position;
+		targetVec.z = 0f;
 		Vector3 moveVec = targetVec.normalized * speed * Time.deltaTime;
+		moveVec.z = 0f;
 
 		if (targetVec.sqrMagnitude < moveVec.sqrMagnitude)
 		{
