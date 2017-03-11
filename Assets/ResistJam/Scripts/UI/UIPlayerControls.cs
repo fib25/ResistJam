@@ -137,7 +137,6 @@ public class UIPlayerControls : MonoBehaviour
 			for (int j = 0; j < allSheep.Count; j++)
 			{
 				Sheep p = allSheep[j];
-				Debug.Log(card.idealType);
 				float pIdealVal = p.Ideals.GetIdealValue(card.idealType);
 
 				if (card.value > 0 && pIdealVal > 0)

@@ -129,8 +129,19 @@ public class GameController : MonoBehaviour
 	{
 		// Randomise a news headline.
 		IdealType[] ideals = Utility.GetEnumValues<IdealType>();
-		IdealType headlineIdeal = ideals[UnityEngine.Random.Range(0, ideals.Length)];
 		IdealLean headlineLean = UnityEngine.Random.value > 0.5f ? IdealLean.Positive : IdealLean.Negative;
+		IdealType headlineIdeal = ideals[UnityEngine.Random.Range(0, ideals.Length)];
+		bool validHeadline = false;
+		while (!validHeadline)
+		{
+			headlineIdeal = ideals[UnityEngine.Random.Range(0, ideals.Length)];
+
+			if (player.Ideals.GetIdealValue(headlineIdeal) != 0f)
+			{
+				validHeadline = true;
+				continue;
+			}
+		}
 		string headline = "Headline is " + headlineLean.ToString() + " " + headlineIdeal.ToString() + "!";
 
 		newsHeadline.InitHeadline(headlineIdeal, headlineLean, headline);

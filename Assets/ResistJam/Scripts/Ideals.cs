@@ -62,7 +62,8 @@ public class Ideals
 
 	public void RandomiseKeyIdeals()
 	{
-		KeyIdeal = (IdealType)UnityEngine.Random.Range(0, 3);
+		int idealsCount = Utility.GetEnumValues<IdealType>().Length;
+		KeyIdeal = (IdealType)UnityEngine.Random.Range(0, idealsCount);
 
 		RandomiseCurrentIdeals();
 	}
