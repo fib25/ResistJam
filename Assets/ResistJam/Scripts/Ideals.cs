@@ -4,9 +4,12 @@ using UnityEngine;
 
 public enum IdealType
 {
-	A,
-	B,
-	C
+	Environment,
+	CivilRights,
+	PublicServices,
+	ForeignPolicy,
+	Economy,
+	ScienceAndCulture
 }
 
 public enum IdealLean
@@ -50,9 +53,11 @@ public class Ideals
 	public Ideals()
 	{
 		// Initialise the ideals dictionary.
-		idealsDict.Add(IdealType.A, 0);
-		idealsDict.Add(IdealType.B, 0);
-		idealsDict.Add(IdealType.C, 0);
+		IdealType[] allIdealTypes = Utility.GetEnumValues<IdealType>();
+		for (int i = 0; i < allIdealTypes.Length; i++)
+		{
+			idealsDict.Add(allIdealTypes[i], 0f);
+		}
 	}
 
 	public void RandomiseKeyIdeals()
@@ -64,9 +69,11 @@ public class Ideals
 
 	public void RandomiseCurrentIdeals()
 	{
-		RandomiseIdealValue(IdealType.A);
-		RandomiseIdealValue(IdealType.B);
-		RandomiseIdealValue(IdealType.C);
+		IdealType[] allIdealTypes = Utility.GetEnumValues<IdealType>();
+		for (int i = 0; i < allIdealTypes.Length; i++)
+		{
+			RandomiseIdealValue(allIdealTypes[i]);
+		}
 
 		//Debug.Log("Key: " + keyIdeal.ToString() + " - " + idealsDict[IdealType.A] + " " + idealsDict[IdealType.B] + " " + idealsDict[IdealType.C]);
 	}

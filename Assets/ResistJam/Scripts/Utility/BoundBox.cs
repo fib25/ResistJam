@@ -16,6 +16,11 @@ public class BoundBox
 		get { return bounds.size; }
 		set { bounds.size = value; }
 	}
+	public Vector3 Extents
+	{
+		get { return bounds.extents; }
+		set { bounds.extents = value; }
+	}
 	public float Top { get { return bounds.center.y + bounds.extents.y; } }
 	public float Bottom { get { return bounds.center.y - bounds.extents.y; } }
 	public float Left { get { return bounds.center.x - bounds.extents.x; } }
