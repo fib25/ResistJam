@@ -128,7 +128,7 @@ public class GameController : MonoBehaviour
 		playerControls.TimesUp();
 		AudioManager.PlaySFX("card-declared");
 
-		this.PerformAction(1.5f, () => {
+		this.PerformAction(2.5f, () => {
 			AudioManager.PlaySFX("drumroll");
 
 			this.PerformAction(1.5f, () => {

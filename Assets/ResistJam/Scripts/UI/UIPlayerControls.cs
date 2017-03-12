@@ -31,6 +31,7 @@ public class UIPlayerControls : MonoBehaviour
 	protected UICard selectedCardUi;
 	protected float cardSelectTimer;
 	protected float cardSelectTimerMaxScale;
+	protected float timerSpeedMod = 1f;
 
 	protected void Awake()
 	{
@@ -179,7 +180,6 @@ public class UIPlayerControls : MonoBehaviour
 		ShowNewCards();
 	}
 
-	protected float timerSpeedMod = 1f;
 	protected void UpdateTimerScale()
 	{
 		// Update timer scale.
