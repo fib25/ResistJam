@@ -177,7 +177,8 @@ public class GameController : MonoBehaviour
 
 	protected void UpdateTimerDisplay()
 	{
-		timerText.text = Mathf.FloorToInt(roundTimer / 60f) + ":" + Mathf.FloorToInt(roundTimer % 60f).ToString("00");
+		//timerText.text = Mathf.FloorToInt(roundTimer / 60f) + ":" + Mathf.FloorToInt(roundTimer % 60f).ToString("00"); // Minutes and seconds.
+		timerText.text = Mathf.FloorToInt(roundTimer).ToString("00"); // Seconds.
 	}
 
 	/*protected void UpdateAllSheepLean()
