@@ -92,11 +92,11 @@ public class Ideals
 
 		if (KeyIdeal == idealType)
 		{
-			newVal = RandomValue(4, 5);
+			newVal = RandomValue(3, 3);
 		}
 		else
 		{
-			newVal = RandomValue(1, 3);
+			newVal = RandomValue(1, 2);
 		}
 
 		idealsDict[idealType] = newVal;

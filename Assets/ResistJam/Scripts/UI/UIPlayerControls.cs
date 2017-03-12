@@ -66,7 +66,7 @@ public class UIPlayerControls : MonoBehaviour
 	{
 		if (!isActive) return;
 
-		cardSelectTimer -= Time.deltaTime;
+		cardSelectTimer -= Time.deltaTime * timerSpeedMod;
 		if (cardSelectTimer <= 0f)
 		{
 			ConfirmCardSelection();
@@ -109,6 +109,8 @@ public class UIPlayerControls : MonoBehaviour
 		Vector3 s = cardSelectTimerDisplay.transform.localScale;
 		s.x = cardSelectTimerMaxScale;
 		cardSelectTimerDisplay.transform.localScale = s;
+
+		timerSpeedMod = 1f;
 
 		UpdateTimerScale();
 	}
@@ -167,6 +169,7 @@ public class UIPlayerControls : MonoBehaviour
 		ShowNewCards();
 	}
 
+	protected float timerSpeedMod = 1f;
 	protected void UpdateTimerScale()
 	{
 		// Update timer scale.
@@ -184,6 +187,8 @@ public class UIPlayerControls : MonoBehaviour
 
 		selectedCardUi = cardUi;
 		cardUi.Highlight();
+
+		timerSpeedMod = GameSettings.Instance.CardSelectTimerSpeedUpModifier;
 
 		AudioManager.PlaySFX("ui-select");
 

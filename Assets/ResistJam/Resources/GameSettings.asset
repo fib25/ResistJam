@@ -11,9 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07fec36fb1b047f45a6767b93f82250d, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  FlockSize: 20
+  FlockSize: 50
   RoundTime: 90
-  CardSelectTime: 5
+  CardSelectTime: 15
+  CardSelectTimerSpeedUpModifier: 5
   HintFadeInTime: 1
   HintFadeInDelay: 2
   HeadlineRepeatTime: 15

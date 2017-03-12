@@ -18,6 +18,7 @@ public class GameSettings : ScriptableObject
 	public int FlockSize;
 	public float RoundTime;
 	public float CardSelectTime;
+	public float CardSelectTimerSpeedUpModifier;
 	public float HintFadeInTime;
 	public float HintFadeInDelay;
 	[Header("Headline")]
