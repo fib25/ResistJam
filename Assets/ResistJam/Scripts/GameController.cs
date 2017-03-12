@@ -50,6 +50,8 @@ public class GameController : MonoBehaviour
 		AudioManager.PlayMusic("game music");
 
 		this.PerformAction(2f, StartGame);
+
+		InvokeRepeating("Baa", 2.0f, 4.0f);
 	}
 
 	protected void InitFlock()
@@ -73,6 +75,11 @@ public class GameController : MonoBehaviour
 
 			allSheep.Add(newSheep);
 		}
+	}
+
+	protected void Baa(){
+		int k = Random.Range (1,6);
+		AudioManager.PlaySFX("baa" + k);
 	}
 
 	protected void InitWolf()
