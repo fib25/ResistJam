@@ -1,4 +1,5 @@
 ﻿
+[System.Serializable]
 public class NewsHeadline
 {
 	public string headline;

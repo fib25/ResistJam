@@ -16,6 +16,11 @@ public class UINewsHeadline : MonoBehaviour
 	protected bool isHeadlineInitialised = false;
 	protected bool responded = false;
 
+	public void InitHeadline(NewsHeadline newsHeadline)
+	{
+		this.InitHeadline(newsHeadline.idealType, newsHeadline.lean, newsHeadline.headline);
+	}
+
 	public void InitHeadline(IdealType ideal, IdealLean idealLean, string headline)
 	{
 		this.currentIdeal = ideal;
