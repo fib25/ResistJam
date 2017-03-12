@@ -164,6 +164,7 @@ public class UIPlayerControls : MonoBehaviour
 
 	public void TimesUp()
 	{
+		isActive = false;
 		inGame.SetActive(false);
 		timesUpMessage.SetActive(true);
 	}

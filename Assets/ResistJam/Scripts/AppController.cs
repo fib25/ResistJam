@@ -14,7 +14,14 @@ public class AppController : MonoBehaviour
 		}
 		#endif
 
-		Navigation.GoToScreen(NavScreen.Team);
+		if (Globals.replayToTitleScreen)
+		{
+			Navigation.GoToScreen(NavScreen.Title);
+		}
+		else
+		{
+			Navigation.GoToScreen(NavScreen.Team);
+		}
 	}
 
 	protected void Update()

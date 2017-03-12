@@ -23,8 +23,7 @@ MonoBehaviour:
   WanderSpeed: 1
   MoveToLeanSpeed: 2.5
   WanderRange: 1.75
-  NewspaperReadTime: 1
   ShowSheepDebug: 0
   ShowValuesOnCards: 0
-  EnableDebugScreen: 1
+  EnableDebugScreen: 0
   DebugScreen: 3

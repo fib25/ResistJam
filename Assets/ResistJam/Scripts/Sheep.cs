@@ -272,7 +272,7 @@ public class Sheep : AbstractIdealist
 
 	protected BoundBox CalculateLocalBounds(float lean)
 	{
-		float yPos = Mathf.Lerp(maxBounds.Top, maxBounds.Bottom, Mathf.InverseLerp(-6f, 6f, lean));
+		float yPos = Mathf.Lerp(maxBounds.Top, maxBounds.Bottom, Mathf.InverseLerp(-3f, 3f, lean));
 
 		BoundBox newBounds = new BoundBox();
 		newBounds.Center = new Vector3(maxBounds.Center.x, yPos, 0f);

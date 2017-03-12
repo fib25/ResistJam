@@ -123,10 +123,12 @@ public class GameController : MonoBehaviour
 
 		Globals.llamaWon = llamasSheep > 0 ? true : false;
 
+		CancelInvoke();
+
 		playerControls.TimesUp();
 		AudioManager.PlaySFX("card-declared");
 
-		this.PerformAction(1f, () => {
+		this.PerformAction(1.5f, () => {
 			AudioManager.PlaySFX("drumroll");
 
 			this.PerformAction(1.5f, () => {
@@ -195,6 +197,8 @@ public class GameController : MonoBehaviour
 
 		newsHeadline.InitHeadline(headlineIdeal, headlineLean, headline);
 		newsHeadline.Show();*/
+
+		if (!gameRunning) return;
 
 		IdealType[] allIdeals = Utility.GetEnumValues<IdealType>();
 		List<IdealType> validIdeals = new List<IdealType>();

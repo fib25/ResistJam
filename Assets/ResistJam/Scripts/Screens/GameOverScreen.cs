@@ -64,8 +64,11 @@ public class GameOverScreen : MonoBehaviour
 
 	public void OnReplayPressed()
 	{
+		Globals.replayToTitleScreen = true;
+
 		AudioManager.PlaySFX("ui-select");
-		Navigation.GoToScreen(NavScreen.Title);
+		//Navigation.GoToScreen(NavScreen.Title);
+		UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
 	}
 
 	public void OnEndPressed()
