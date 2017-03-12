@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
 	protected Wolf dictator;
 	protected Llama player;
 	protected List<Sheep> allSheep = new List<Sheep>();
+	protected Fox fox;
 	protected UIPlayerControls playerControls;
 	[SerializeField]
 	protected UINewsHeadline newsHeadline;
@@ -24,6 +25,7 @@ public class GameController : MonoBehaviour
 	{
 		dictator = FindObjectOfType<Wolf>();
 		player = FindObjectOfType<Llama>();
+		fox = FindObjectOfType<Fox>();
 		playerControls = FindObjectOfType<UIPlayerControls>();
 		playerControls.CardSelectedEvent += OnCardSelected;
 		//newsHeadline = FindObjectOfType<UINewsHeadline>();
@@ -209,6 +211,8 @@ public class GameController : MonoBehaviour
 			newsHeadline.Hide();
 		});
 
+		fox.DoAnnounce();
+
 		for (int i = 0; i < allSheep.Count; i++)
 		{
 			allSheep[i].SetState(SheepState.Newspaper);
@@ -262,6 +266,7 @@ public class GameController : MonoBehaviour
 		//AudioManager.PlaySFX("howl");
 
 		AudioManager.PlaySFX("card-declared");
+		AudioManager.PlaySFX("sheep-move");
 
 		doLlamaSfx = !doLlamaSfx;
 	}
@@ -318,6 +323,7 @@ public class GameController : MonoBehaviour
 		StartNewsHeadlineCountdown();
 
 		AudioManager.PlaySFXRandom("baa");
+		AudioManager.PlaySFX("sheep-move");
 
 		playerControls.Show();
 		playerControls.ShowNewCards();
