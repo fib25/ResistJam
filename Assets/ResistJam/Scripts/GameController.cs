@@ -46,6 +46,8 @@ public class GameController : MonoBehaviour
 		roundTimer = GameSettings.Instance.RoundTime;
 		UpdateTimerDisplay();
 
+		AudioManager.PlayMusic("game music");
+
 		this.PerformAction(2f, StartGame);
 	}
 

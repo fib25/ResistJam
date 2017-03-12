@@ -24,6 +24,8 @@ public class GameOverScreen : MonoBehaviour
 			llamaWon.gameObject.SetActive(true);
 			wolfWon.gameObject.SetActive(false);
 			hintImage.gameObject.SetActive(false);
+
+			AudioManager.PlayMusic("win-game");
 		}
 		else
 		{
@@ -38,6 +40,8 @@ public class GameOverScreen : MonoBehaviour
 			this.PerformAction(GameSettings.Instance.HintFadeInDelay, () => {
 				StartCoroutine(FadeInHint());
 			});
+
+			AudioManager.PlayMusic("lose-game");
 		}
 	}
 
@@ -60,11 +64,14 @@ public class GameOverScreen : MonoBehaviour
 
 	public void OnReplayPressed()
 	{
+		AudioManager.PlaySFX("ui-select");
 		Navigation.GoToScreen(NavScreen.Title);
 	}
 
 	public void OnEndPressed()
 	{
+		AudioManager.PlaySFX("ui-select");
+
 		#if UNITY_STANDALONE
 		Application.Quit();
 		#endif

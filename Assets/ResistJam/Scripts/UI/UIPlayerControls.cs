@@ -185,6 +185,8 @@ public class UIPlayerControls : MonoBehaviour
 		selectedCardUi = cardUi;
 		cardUi.Highlight();
 
+		AudioManager.PlaySFX("ui-select");
+
 		/*Card lowestCard = null;
 		float lowestScore = float.MaxValue;
 

@@ -7,6 +7,8 @@ public class TitleScreen : MonoBehaviour
 	
 	public void OnEnable()
 	{
+		AudioManager.PlayMusic("intro-help music loop", true);
+
 		this.PerformAction(5f, NextScreen);
 	}
 
@@ -20,6 +22,7 @@ public class TitleScreen : MonoBehaviour
 
 	protected void NextScreen()
 	{
+		AudioManager.PlaySFX("ui-select");
 		Navigation.GoToScreen(NavScreen.Instruction);
 	}
 }
