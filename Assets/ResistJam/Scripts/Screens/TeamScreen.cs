@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TeamScreen : MonoBehaviour
 {
-	public void OnEnable()
+	protected void OnEnable()
 	{
 		this.PerformAction(2f, () => {
 			Navigation.GoToScreen(NavScreen.Title);

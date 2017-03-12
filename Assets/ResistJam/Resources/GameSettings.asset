@@ -14,6 +14,8 @@ MonoBehaviour:
   CrowdSize: 20
   RoundTime: 90
   CardSelectTime: 5
+  HintFadeInTime: 1
+  HintFadeInDelay: 2
   HeadlineRepeatTime: 15
   HeadlineOnScreenTime: 5
   IdleTime: 5
@@ -22,4 +24,4 @@ MonoBehaviour:
   WanderRange: 1.75
   NewspaperReadTime: 1
   ShowSheepDebug: 0
-  ShowValuesOnCards: 1
+  ShowValuesOnCards: 0

@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class AppController : MonoBehaviour
 {
-	public void Awake()
+	protected void Awake()
 	{
 		Navigation.GoToScreen(NavScreen.Team);
+	}
+
+	protected void Update()
+	{
+		#if UNITY_STANDALONE
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			Application.Quit();
+		}
+		#endif
 	}
 }

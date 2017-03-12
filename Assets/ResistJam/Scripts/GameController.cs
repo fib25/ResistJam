@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
 	protected UIPlayerControls playerControls;
 	[SerializeField]
 	protected UINewsHeadline newsHeadline;
+	protected UnityEngine.UI.GraphicRaycaster graphicRaycaster;
 
 	protected float roundTimer;
 	protected bool gameRunning = false;
@@ -27,6 +28,7 @@ public class GameController : MonoBehaviour
 		//newsHeadline = FindObjectOfType<UINewsHeadline>();
 		newsHeadline.HeadlineResolvedEvent += OnHeadlineResolved;
 		newsHeadline.gameObject.SetActive(false);
+		graphicRaycaster = GetComponentInChildren<UnityEngine.UI.GraphicRaycaster>(true);
 
 		crowdTransform = GameObject.Find("Crowd").transform;
 	}
@@ -36,6 +38,8 @@ public class GameController : MonoBehaviour
 		InitDictator();
 		InitPlayer();
 		InitCrowd();
+
+		graphicRaycaster.enabled = false;
 
 		playerControls.SetAllSheep(allSheep);
 
@@ -47,7 +51,7 @@ public class GameController : MonoBehaviour
 
 	protected void InitCrowd()
 	{
-		List<string> names = new List<string>(new string[]{"Jim", "Michael", "Jules", "Nat", "Joe"});
+		List<string> names = new List<string>(new string[]{"James", "Michael", "Jules", "Nat", "Joe", "Susanna"});
 		int gap = GameSettings.Instance.CrowdSize / names.Count;
 
 		for (int i = 0; i < GameSettings.Instance.CrowdSize; i++)
@@ -81,14 +85,33 @@ public class GameController : MonoBehaviour
 	protected void StartGame()
 	{
 		gameRunning = true;
+		graphicRaycaster.enabled = true;
 		playerControls.StartShowingCards();
 		StartNewsHeadlineCountdown();
 	}
 
 	protected void CompleteGame()
 	{
-		//gameRunning = false;
-		//playerControls.enabled = false;
+		gameRunning = false;
+		graphicRaycaster.enabled = false;
+
+		int llamasSheep = 0;
+
+		for (int i = 0; i < allSheep.Count; i++)
+		{
+			if (allSheep[i].Lean > 0f)
+			{
+				llamasSheep++;
+			}
+			else if (allSheep[i].Lean < 0f)
+			{
+				llamasSheep--;
+			}
+		}
+
+		Globals.llamaWon = llamasSheep > 0 ? true : false;
+
+		Navigation.GoToScreen(NavScreen.GameOver);
 	}
 
 	protected void Update()

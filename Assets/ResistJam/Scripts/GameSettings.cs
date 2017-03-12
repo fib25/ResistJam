@@ -18,6 +18,8 @@ public class GameSettings : ScriptableObject
 	public int CrowdSize;
 	public float RoundTime;
 	public float CardSelectTime;
+	public float HintFadeInTime;
+	public float HintFadeInDelay;
 	[Header("Headline")]
 	public float HeadlineRepeatTime;
 	public float HeadlineOnScreenTime;
