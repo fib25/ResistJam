@@ -15,6 +15,8 @@ public class UIPlayerControls : MonoBehaviour
 	[SerializeField]
 	protected GameObject getReadyMessage;
 	[SerializeField]
+	protected GameObject timesUpMessage;
+	[SerializeField]
 	protected GameObject inGame;
 	[SerializeField]
 	protected GameObject cardSelectTimerDisplay;
@@ -48,6 +50,7 @@ public class UIPlayerControls : MonoBehaviour
 	protected void Start()
 	{
 		getReadyMessage.SetActive(true);
+		timesUpMessage.SetActive(false);
 		inGame.SetActive(false);
 
 		ResetCardSelectTimer();
@@ -157,6 +160,12 @@ public class UIPlayerControls : MonoBehaviour
 			currentCards.Add(card);
 			cardUis[i].SetCardDetails(card, agreePercent);
 		}
+	}
+
+	public void TimesUp()
+	{
+		inGame.SetActive(false);
+		timesUpMessage.SetActive(true);
 	}
 
 	protected void ConfirmCardSelection()

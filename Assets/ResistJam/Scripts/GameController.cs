@@ -123,7 +123,16 @@ public class GameController : MonoBehaviour
 
 		Globals.llamaWon = llamasSheep > 0 ? true : false;
 
-		Navigation.GoToScreen(NavScreen.GameOver);
+		playerControls.TimesUp();
+		AudioManager.PlaySFX("card-declared");
+
+		this.PerformAction(1f, () => {
+			AudioManager.PlaySFX("drumroll");
+
+			this.PerformAction(1.5f, () => {
+				Navigation.GoToScreen(NavScreen.GameOver);
+			});
+		});
 	}
 
 	protected void Update()
