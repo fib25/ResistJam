@@ -29,7 +29,6 @@ public class GameSettings : ScriptableObject
 	public float WanderSpeed;
 	public float MoveToLeanSpeed;
 	public float WanderRange;
-	public float NewspaperReadTime;
 	[Header("Debug")]
 	public bool ShowSheepDebug;
 	public bool ShowValuesOnCards;

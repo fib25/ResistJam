@@ -85,7 +85,7 @@ public class WalkerTalker : AbstractIdealist
 		isWalking = false;
 		isTalking = true;
 		anim.SetTrigger(talkId);
-		talkTimer = 1f;
+		talkTimer = 2f;
 	}
 
 	protected void WalkLeft()
