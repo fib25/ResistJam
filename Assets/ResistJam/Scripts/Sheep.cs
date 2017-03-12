@@ -58,7 +58,7 @@ public class Sheep : AbstractIdealist
 
 		RandomiseKeyIdeals();
 
-		BoxCollider2D sheepArea = GameObject.Find("CrowdArea").GetComponent<BoxCollider2D>();
+		BoxCollider2D sheepArea = GameObject.Find("SheepArea").GetComponent<BoxCollider2D>();
 		maxBounds = new BoundBox(sheepArea.bounds.center, sheepArea.bounds.size);
 		localBounds = CalculateLocalBounds(_lean);
 
@@ -102,10 +102,10 @@ public class Sheep : AbstractIdealist
 		localBounds = CalculateLocalBounds(_lean);
 
 		Vector3 startPos = Vector3.zero;
-		startPos.x = UnityEngine.Random.Range(localBounds.Left * 0.25f, localBounds.Right * 0.25f);
+		startPos.x = UnityEngine.Random.Range(localBounds.Left, localBounds.Right);
 		startPos.y = UnityEngine.Random.Range(localBounds.Top, localBounds.Bottom);
 
-		this.transform.localPosition = startPos;
+		this.transform.position = startPos;
 	}
 
 	public void UpdateLean(Player player, Dictator dictator)
@@ -272,11 +272,23 @@ public class Sheep : AbstractIdealist
 
 	protected BoundBox CalculateLocalBounds(float lean)
 	{
-		float yPos = Mathf.Lerp(maxBounds.Top, maxBounds.Bottom, Mathf.InverseLerp(-3f, 3f, lean));
+		float yPos = Mathf.Lerp(maxBounds.Top, maxBounds.Bottom, Mathf.InverseLerp(-6f, 6f, lean));
 
 		BoundBox newBounds = new BoundBox();
 		newBounds.Center = new Vector3(maxBounds.Center.x, yPos, 0f);
-		newBounds.Size = new Vector3(maxBounds.Size.x, maxBounds.Size.y * 0.1f, 0f);
+		newBounds.Size = new Vector3(maxBounds.Size.x, maxBounds.Size.y * 0.08f, 0f);
+
+		// Keep the sheep walk area within the maxBounds by shift up or down slightly.
+		if (newBounds.Center.y + newBounds.Extents.y > maxBounds.Top)
+		{
+			newBounds.Center = new Vector3(newBounds.Center.x, newBounds.Center.y - (newBounds.Extents.y * 0.5f), 0f);
+			newBounds.Size = new Vector3(newBounds.Size.x, newBounds.Size.y * 0.5f, 0f);
+		}
+		else if (newBounds.Center.y - newBounds.Extents.y < maxBounds.Bottom)
+		{
+			newBounds.Center = new Vector3(newBounds.Center.x, newBounds.Center.y + (newBounds.Extents.y * 0.5f), 0f);
+			newBounds.Size = new Vector3(newBounds.Size.x, newBounds.Size.y * 0.5f, 0f);
+		}
 
 		return newBounds;
 	}
@@ -321,6 +333,7 @@ public class Sheep : AbstractIdealist
 		sheepRenderer.sprite = sprite;
 	}
 
+	#if UNITY_EDITOR
 	protected void OnDrawGizmos()
 	{
 		// Target.
@@ -346,4 +359,5 @@ public class Sheep : AbstractIdealist
 			Gizmos.DrawWireCube(localBounds.Center, localBounds.Size);
 		}
 	}
+	#endif
 }

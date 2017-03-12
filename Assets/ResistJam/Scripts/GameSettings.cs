@@ -15,7 +15,7 @@ public class GameSettings : ScriptableObject
 	}
 
 	[Header("Settings")]
-	public int CrowdSize;
+	public int FlockSize;
 	public float RoundTime;
 	public float CardSelectTime;
 	public float HintFadeInTime;
@@ -32,6 +32,8 @@ public class GameSettings : ScriptableObject
 	[Header("Debug")]
 	public bool ShowSheepDebug;
 	public bool ShowValuesOnCards;
+	public bool EnableDebugScreen;
+	public NavScreen DebugScreen;
 
 	/// <summary>
 	/// Loads the GameSettings asset from the Resources folder.

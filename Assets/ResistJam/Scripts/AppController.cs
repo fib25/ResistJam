@@ -6,6 +6,14 @@ public class AppController : MonoBehaviour
 {
 	protected void Awake()
 	{
+		#if UNITY_EDITOR
+		if (GameSettings.Instance.EnableDebugScreen)
+		{
+			Navigation.GoToScreen(GameSettings.Instance.DebugScreen);
+			return;
+		}
+		#endif
+
 		Navigation.GoToScreen(NavScreen.Team);
 	}
 

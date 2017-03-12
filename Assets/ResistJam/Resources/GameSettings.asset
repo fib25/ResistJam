@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07fec36fb1b047f45a6767b93f82250d, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  CrowdSize: 20
+  FlockSize: 20
   RoundTime: 90
   CardSelectTime: 5
   HintFadeInTime: 1
@@ -25,3 +25,5 @@ MonoBehaviour:
   NewspaperReadTime: 1
   ShowSheepDebug: 0
   ShowValuesOnCards: 0
+  EnableDebugScreen: 1
+  DebugScreen: 3

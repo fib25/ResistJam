@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
 	public Sheep sheepPrefab;
 	public UnityEngine.UI.Text timerText;
 
-	protected Transform crowdTransform;
+	protected Transform sheepFlockTransform;
 	protected Dictator dictator;
 	protected Player player;
 	protected List<Sheep> allSheep = new List<Sheep>();
@@ -30,14 +30,14 @@ public class GameController : MonoBehaviour
 		newsHeadline.gameObject.SetActive(false);
 		graphicRaycaster = GetComponentInChildren<UnityEngine.UI.GraphicRaycaster>(true);
 
-		crowdTransform = GameObject.Find("Crowd").transform;
+		sheepFlockTransform = GameObject.Find("SheepFlock").transform;
 	}
 
 	protected void Start()
 	{
-		InitDictator();
-		InitPlayer();
-		InitCrowd();
+		InitWolf();
+		InitLlama();
+		InitFlock();
 
 		graphicRaycaster.enabled = false;
 
@@ -51,22 +51,22 @@ public class GameController : MonoBehaviour
 		this.PerformAction(2f, StartGame);
 	}
 
-	protected void InitCrowd()
+	protected void InitFlock()
 	{
 		List<string> names = new List<string>(new string[]{"James", "Michael", "Jules", "Nat", "Joe", "Susanna"});
-		int gap = GameSettings.Instance.CrowdSize / names.Count;
+		int gap = GameSettings.Instance.FlockSize / names.Count;
 
-		for (int i = 0; i < GameSettings.Instance.CrowdSize; i++)
+		for (int i = 0; i < GameSettings.Instance.FlockSize; i++)
 		{
 			Sheep newSheep = GameObject.Instantiate<Sheep>(sheepPrefab);
 			newSheep.name = "Sheep_" + i.ToString("000");
-			if (GameSettings.Instance.CrowdSize >= 10 && i % gap == 0 && names.Count > 0)
+			if (GameSettings.Instance.FlockSize >= 10 && i % gap == 0 && names.Count > 0)
 			{
 				newSheep.name = "Sheep_" + names[0];
 				names.RemoveAt(0);
 			}
 
-			newSheep.transform.SetParent(crowdTransform);
+			newSheep.transform.SetParent(sheepFlockTransform);
 
 			newSheep.UpdateLean(player, dictator);
 
@@ -74,12 +74,12 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	protected void InitDictator()
+	protected void InitWolf()
 	{
 		//dictator.RandomiseKeyIdeals();
 	}
 
-	protected void InitPlayer()
+	protected void InitLlama()
 	{
 		//player.RandomiseIdeals();
 	}
@@ -126,7 +126,7 @@ public class GameController : MonoBehaviour
 				{
 					allSheep[i].UpdateLean(player, dictator);
 
-					if (allSheep[i].Lean <= -3f || allSheep[i].Lean >= 3f)
+					if (allSheep[i].Lean <= -6f || allSheep[i].Lean >= 6f)
 					{
 						Debug.Log("Stop lean " + allSheep[i].name + "!");
 						allSheep[i].allowLeanUpdate = false;
@@ -144,6 +144,10 @@ public class GameController : MonoBehaviour
 				CompleteGame();
 			}
 		}
+
+		#if UNITY_EDITOR
+		DebugInput();
+		#endif
 	}
 
 	protected void StartNewsHeadlineCountdown()
@@ -181,6 +185,12 @@ public class GameController : MonoBehaviour
 			{
 				validIdeals.Add(allIdeals[i]);
 			}
+		}
+
+		// If for whatever reason there are no valid ideals, just throw 'em all in!
+		if (validIdeals.Count == 0)
+		{
+			validIdeals.AddRange(allIdeals);
 		}
 
 		NewsHeadline headline = NewsHeadlineCollection.Instance.GetRandomByIdealType(validIdeals[UnityEngine.Random.Range(0, validIdeals.Count)]);;
@@ -275,4 +285,11 @@ public class GameController : MonoBehaviour
 		playerControls.Show();
 		playerControls.ShowNewCards();
 	}
+
+	#if UNITY_EDITOR
+	protected void DebugInput()
+	{
+		//
+	}
+	#endif
 }

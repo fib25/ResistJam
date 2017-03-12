@@ -34,7 +34,7 @@ public class UIPlayerControls : MonoBehaviour
 	{
 		player = FindObjectOfType<Player>();
 		dictator = FindObjectOfType<Dictator>();
-		cardUis = FindObjectsOfType<UICard>();
+		cardUis = GetComponentsInChildren<UICard>(true);
 
 		for (int i = 0; i < cardUis.Length; i++)
 		{
