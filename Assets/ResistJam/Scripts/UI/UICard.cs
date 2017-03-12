@@ -20,14 +20,12 @@ public class UICard : MonoBehaviour
 	public int cardIndex;
 
 	protected Button button;
-	protected string helperTextFormat;
+	protected const string PERCENTAGE_TEXT_FORMAT = "{0}% of sheep like this";
 
 	protected void Awake()
 	{
 		button = GetComponent<Button>();
 		button.onClick.AddListener(OnCardClicked);
-
-		helperTextFormat = helperText.text;
 	}
 
 	protected void OnDestroy()
@@ -49,7 +47,7 @@ public class UICard : MonoBehaviour
 			messageText.text += " (" + card.idealType.ToString() + operatorChar + Mathf.Abs(card.value).ToString("#0") + ")";
 		}
 
-		helperText.text = string.Format(helperTextFormat, agreePercent.ToString());
+		helperText.text = string.Format(PERCENTAGE_TEXT_FORMAT, agreePercent.ToString());
 	}
 
 	public void Highlight()

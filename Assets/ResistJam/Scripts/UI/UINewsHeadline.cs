@@ -37,6 +37,8 @@ public class UINewsHeadline : MonoBehaviour
 		if (this.gameObject.activeSelf) return;
 
 		this.gameObject.SetActive(true);
+
+		AudioManager.PlaySFX("newspaper-read");
 	}
 
 	public void Hide()

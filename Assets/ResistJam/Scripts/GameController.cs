@@ -254,6 +254,8 @@ public class GameController : MonoBehaviour
 		//AudioManager.PlaySFX("declare-policy");
 		//AudioManager.PlaySFX("howl");
 
+		AudioManager.PlaySFX("card-declared");
+
 		doLlamaSfx = !doLlamaSfx;
 	}
 
@@ -280,7 +282,15 @@ public class GameController : MonoBehaviour
 		}
 
 		// Choose an amount to flip and flip 'em!
-		int amountToFlip = (int)((float)flippingSheep.Count * UnityEngine.Random.Range(0.35f, 0.65f));
+		int amountToFlip = 0;
+		if (flippingSheep.Count <= 5)
+		{
+			amountToFlip = flippingSheep.Count;
+		}
+		else
+		{
+			amountToFlip = (int)((float)flippingSheep.Count * UnityEngine.Random.Range(0.5f, 1f));
+		}
 
 		for (int i = 0; i < amountToFlip; i++)
 		{
