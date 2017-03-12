@@ -1,14 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public enum IdealType
 {
+	[Description("Environment")]
 	Environment,
+	[Description("Civil Rights")]
 	CivilRights,
+	[Description("Public Services")]
 	PublicServices,
+	[Description("Foreign Policy")]
 	ForeignPolicy,
+	[Description("Economy")]
 	Economy,
+	[Description("Science & Culture")]
 	ScienceAndCulture
 }
 

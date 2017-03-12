@@ -11,6 +11,8 @@ public class UICard : MonoBehaviour
 	public Text headerText;
 	public Text messageText;
 	public Text helperText;
+	public Image headerImage;
+	public Sprite[] headerSprites;
 
 	[HideInInspector]
 	public int cardIndex;
@@ -33,6 +35,9 @@ public class UICard : MonoBehaviour
 
 	public void SetCardDetails(Card card, int agreePercent)
 	{
+		SetHeaderSprite(card.idealType);
+
+		headerText.text = card.idealType.GetDescription();
 		messageText.text = card.message;
 
 		if (GameSettings.Instance.ShowValuesOnCards)
@@ -52,6 +57,11 @@ public class UICard : MonoBehaviour
 	public void UnHighlight()
 	{
 		this.GetComponent<Image>().color = Color.white;
+	}
+
+	protected void SetHeaderSprite(IdealType idealType)
+	{
+		headerImage.sprite = headerSprites[(int)idealType];
 	}
 
 	protected void OnCardClicked()
