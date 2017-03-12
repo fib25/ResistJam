@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
 public class UICard : MonoBehaviour
 {
 	public event System.Action<UICard> CardPressed = delegate { };
 
+	public Text headerText;
 	public Text messageText;
 	public Text helperText;
 
@@ -19,7 +19,7 @@ public class UICard : MonoBehaviour
 
 	protected void Awake()
 	{
-		Button button = GetComponent<Button>();
+		Button button = GetComponentInChildren<Button>();
 		button.onClick.AddListener(OnCardClicked);
 
 		helperTextFormat = helperText.text;
