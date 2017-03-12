@@ -3085,8 +3085,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1197699835}
   - component: {fileID: 1197699834}
-  - component: {fileID: 1197699833}
-  - component: {fileID: 1197699832}
   - component: {fileID: 1197699831}
   m_Layer: 0
   m_Name: Main Camera
@@ -3102,20 +3100,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1197699830}
   m_Enabled: 1
---- !u!124 &1197699832
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1197699830}
-  m_Enabled: 1
---- !u!92 &1197699833
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1197699830}
-  m_Enabled: 1
 --- !u!20 &1197699834
 Camera:
   m_ObjectHideFlags: 0
@@ -3124,8 +3108,8 @@ Camera:
   m_GameObject: {fileID: 1197699830}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
