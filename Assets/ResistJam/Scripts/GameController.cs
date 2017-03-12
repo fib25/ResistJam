@@ -128,12 +128,37 @@ public class GameController : MonoBehaviour
 	protected void ShowNewsHeadline()
 	{
 		// Randomise a news headline.
-		IdealType[] ideals = Utility.GetEnumValues<IdealType>();
-		IdealType headlineIdeal = ideals[UnityEngine.Random.Range(0, ideals.Length)];
+		/*IdealType[] ideals = Utility.GetEnumValues<IdealType>();
 		IdealLean headlineLean = UnityEngine.Random.value > 0.5f ? IdealLean.Positive : IdealLean.Negative;
+		IdealType headlineIdeal = ideals[UnityEngine.Random.Range(0, ideals.Length)];
+		bool validHeadline = false;
+		while (!validHeadline)
+		{
+			headlineIdeal = ideals[UnityEngine.Random.Range(0, ideals.Length)];
+
+			if (player.Ideals.GetIdealValue(headlineIdeal) != 0f)
+			{
+				validHeadline = true;
+				continue;
+			}
+		}
 		string headline = "Headline is " + headlineLean.ToString() + " " + headlineIdeal.ToString() + "!";
 
 		newsHeadline.InitHeadline(headlineIdeal, headlineLean, headline);
+		newsHeadline.Show();*/
+
+		IdealType[] allIdeals = Utility.GetEnumValues<IdealType>();
+		List<IdealType> validIdeals = new List<IdealType>();
+		for (int i = 0; i < allIdeals.Length; i++)
+		{
+			if (player.Ideals.GetIdealValue(allIdeals[i]) != 0f)
+			{
+				validIdeals.Add(allIdeals[i]);
+			}
+		}
+
+		NewsHeadline headline = NewsHeadlineCollection.Instance.GetRandomByIdealType(validIdeals[UnityEngine.Random.Range(0, validIdeals.Count)]);;
+		newsHeadline.InitHeadline(headline);
 		newsHeadline.Show();
 
 		this.PerformAction(GameSettings.Instance.HeadlineOnScreenTime, () => {

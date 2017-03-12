@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 63d67d3a6494f9745854271cf5a113f6
-timeCreated: 1489100593
+guid: 3e2eb04ff83bfd544b7707f8e6e0f96e
+timeCreated: 1489316195
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
@@ -94,7 +94,7 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-  spritePackingTag: atlas
+  spritePackingTag: 
   userData: 
   assetBundleName: 
   assetBundleVariant: 

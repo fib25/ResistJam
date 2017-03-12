@@ -10,10 +10,22 @@ public enum SheepState
 	Newspaper
 }
 
+public enum SheepSprite
+{
+	Happy,
+	Ecstatic,
+	Sad,
+	Rage
+}
+
 public class Sheep : AbstractIdealist
 {
 	[SerializeField]
+	protected SpriteRenderer sheepRenderer;
+	[SerializeField]
 	protected GameObject newspaperDisplay;
+	[SerializeField]
+	protected Sprite[] sheepSprites;
 
 	[Header("Debug")]
 	public bool showDebug = false;
@@ -79,6 +91,8 @@ public class Sheep : AbstractIdealist
 		pos.z = Mathf.Lerp(-10f, 0f, Mathf.InverseLerp(-halfScreenHeight, halfScreenHeight, pos.y));
 		this.transform.position = pos;
 
+		prevLean = _lean;
+
 		// Choose whether to show debug text.
 		debugDisplay.SetActive(showDebug && GameSettings.Instance.ShowSheepDebug);
 	}
@@ -96,13 +110,8 @@ public class Sheep : AbstractIdealist
 
 	public void UpdateLean(Player player, Dictator dictator)
 	{
-		//Debug.Log("----------");
-
 		float dictatorResult = Ideals.CompareIdeals(this.Ideals, dictator.Ideals);
-		//Debug.Log("Dictator chi: " + dictatorResult);
-
 		float playerResult = Ideals.CompareIdeals(this.Ideals, player.Ideals);
-		//Debug.Log("Player chi: " + playerResult);
 
 		_lean = playerResult - dictatorResult;
 	}
@@ -137,7 +146,7 @@ public class Sheep : AbstractIdealist
 				idleTimer = settings.IdleTime;
 			}
 
-			// TODO: Change to eat sprite? Or do something.
+			SetSheepSprite(SheepSprite.Happy);
 		}
 		else if (newState == SheepState.Wandering)
 		{
@@ -162,7 +171,18 @@ public class Sheep : AbstractIdealist
 
 			targetPos = CalculateTargetPosition();
 
-			// TODO: Change to rushing sprite? Or do something.
+			if (_prevState == SheepState.Newspaper)
+			{
+				SetSheepSprite(SheepSprite.Rage);
+			}
+			else if (_lean > prevLean)
+			{
+				SetSheepSprite(SheepSprite.Ecstatic);
+			}
+			else if (_lean < prevLean)
+			{
+				SetSheepSprite(SheepSprite.Sad);
+			}
 		}
 		else if (newState == SheepState.Newspaper)
 		{
@@ -175,11 +195,6 @@ public class Sheep : AbstractIdealist
 			}
 
 			newspaperDisplay.SetActive(true);
-
-			/*this.PerformAction(settings.NewspaperReadTime, () => {
-				newspaperDisplay.SetActive(false);
-				this.SetState(SheepState.MoveToLean);
-			});*/
 		}
 	}
 
@@ -208,8 +223,6 @@ public class Sheep : AbstractIdealist
 			//
 			break;
 		}
-
-		prevLean = _lean;
 	}
 
 	protected void IdleStateUpdate()
@@ -283,6 +296,29 @@ public class Sheep : AbstractIdealist
 		}
 
 		return new Vector3(x, y, 0f);
+	}
+
+	protected void SetSheepSprite(SheepSprite sheepSprite)
+	{
+		Sprite sprite = null;
+		switch (sheepSprite)
+		{
+		default:
+		case SheepSprite.Happy:
+			sprite = sheepSprites[0];
+			break;
+		case SheepSprite.Ecstatic:
+			sprite = sheepSprites[1];
+			break;
+		case SheepSprite.Sad:
+			sprite = sheepSprites[2];
+			break;
+		case SheepSprite.Rage:
+			sprite = sheepSprites[3];
+			break;
+		}
+
+		sheepRenderer.sprite = sprite;
 	}
 
 	protected void OnDrawGizmos()

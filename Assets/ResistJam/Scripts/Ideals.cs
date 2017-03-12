@@ -1,12 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public enum IdealType
 {
-	A,
-	B,
-	C
+	[Description("Environment")]
+	Environment,
+	[Description("Civil Rights")]
+	CivilRights,
+	[Description("Public Services")]
+	PublicServices,
+	[Description("Foreign Policy")]
+	ForeignPolicy,
+	[Description("Economy")]
+	Economy,
+	[Description("Science & Culture")]
+	ScienceAndCulture
 }
 
 public enum IdealLean
@@ -50,23 +60,28 @@ public class Ideals
 	public Ideals()
 	{
 		// Initialise the ideals dictionary.
-		idealsDict.Add(IdealType.A, 0);
-		idealsDict.Add(IdealType.B, 0);
-		idealsDict.Add(IdealType.C, 0);
+		IdealType[] allIdealTypes = Utility.GetEnumValues<IdealType>();
+		for (int i = 0; i < allIdealTypes.Length; i++)
+		{
+			idealsDict.Add(allIdealTypes[i], 0f);
+		}
 	}
 
 	public void RandomiseKeyIdeals()
 	{
-		KeyIdeal = (IdealType)UnityEngine.Random.Range(0, 3);
+		int idealsCount = Utility.GetEnumValues<IdealType>().Length;
+		KeyIdeal = (IdealType)UnityEngine.Random.Range(0, idealsCount);
 
 		RandomiseCurrentIdeals();
 	}
 
 	public void RandomiseCurrentIdeals()
 	{
-		RandomiseIdealValue(IdealType.A);
-		RandomiseIdealValue(IdealType.B);
-		RandomiseIdealValue(IdealType.C);
+		IdealType[] allIdealTypes = Utility.GetEnumValues<IdealType>();
+		for (int i = 0; i < allIdealTypes.Length; i++)
+		{
+			RandomiseIdealValue(allIdealTypes[i]);
+		}
 
 		//Debug.Log("Key: " + keyIdeal.ToString() + " - " + idealsDict[IdealType.A] + " " + idealsDict[IdealType.B] + " " + idealsDict[IdealType.C]);
 	}

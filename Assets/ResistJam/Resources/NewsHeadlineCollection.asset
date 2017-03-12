@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79db82269869c442889f5441136e758, type: 3}
+  m_Name: NewsHeadlineCollection
+  m_EditorClassIdentifier: 
+  items:
+  - headline: Vet Office Warns Of Heavy Rains, Stream Flooding Likely
+    idealType: 0
+    lean: 1
+  - headline: 'Farmyard Warming A "Sham", Hoots Owl Parliament '
+    idealType: 0
+    lean: -1
+  - headline: Brave Fieldmouse Saves Lost Lamb
+    idealType: 1
+    lean: 1
+  - headline: Escaped Goat Triggers Farm Security Concerns
+    idealType: 1
+    lean: -1
+  - headline: Foot And Mouth Running Back To Bite Us, Warn Experts
+    idealType: 2
+    lean: 1
+  - headline: Gaggle of Geese Guzzling Grain, Costing Meadow Gazillions
+    idealType: 2
+    lean: -1
+  - headline: Ducks Not Quackers After All, Research Finds
+    idealType: 3
+    lean: 1
+  - headline: Boy Who Cried Wolf Found Eaten By Wolves
+    idealType: 3
+    lean: -1
+  - headline: Warm Spring Means Grass Really Will Be Greener
+    idealType: 4
+    lean: 1
+  - headline: Fieldmice Caught Eating Grain Reserves
+    idealType: 4
+    lean: -1
+  - headline: Neighbouring Farm Discovered!
+    idealType: 5
+    lean: 1
+  - headline: Black Sheep "Wasting" Arts Funds on "Mind Enhancing Weeds"
+    idealType: 5
+    lean: -1

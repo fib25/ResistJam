@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Reflection;
 using UnityEngine;
 
 public static class Utility
@@ -41,5 +43,22 @@ public static class Utility
 		}
 
 		return output.ToArray();
+	}
+
+	public static string GetDescription(this Enum enumValue)
+	{
+		string enumValueAsString = enumValue.ToString();
+
+		var type = enumValue.GetType();
+		FieldInfo fieldInfo = type.GetField(enumValueAsString);
+		object[] attributes = fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
+
+		if (attributes.Length > 0)
+		{
+			var attribute = (DescriptionAttribute)attributes[0];
+			return attribute.Description;
+		}
+
+		return enumValueAsString;
 	}
 }

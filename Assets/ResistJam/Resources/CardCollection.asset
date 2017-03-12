@@ -14,25 +14,192 @@ MonoBehaviour:
   cards:
   - idealType: 0
     value: 1
-    message: A is a force for good, but not your priority.
+    message: We'll bring clean energy to the meadow by building a watermill on the
+      Stream
   - idealType: 0
     value: 2
-    message: A should be given more attention overall.
+    message: We'll introduce beavers to the Stream as a natural solution to our flooding
+      problems
   - idealType: 0
+    value: 1
+    message: We're commited to dropping machinery emissions by re-using biofuel from
+      our Meadow
+  - idealType: 0
+    value: 2
+    message: The farm is turning into a concrete jungle! We promise to restrict development,
+      keeping our Meadow green
+  - idealType: 0
+    value: -1
+    message: 'Small businesses like Larry Ramsden''s are suffocating under high fuel
+      costs: we''ll give them a tax break'
+  - idealType: 0
+    value: -2
+    message: Shale gas offers cheap energy for all of us - let's invest in the fracking
+      industry and take advantage!
+  - idealType: 0
+    value: -2
+    message: The geese barely have space to land on the farm. We'll expand our runways,
+      meaning more deliveries for us all
+  - idealType: 0
+    value: -1
+    message: If any more wind turbines go up, we won't have grass to graze. We promise
+      to find alternative ways to power the farm!
+  - idealType: 1
+    value: 1
+    message: We are committed to putting more ewes in positions of authority throughout
+      the herd
+  - idealType: 1
+    value: 1
+    message: Worried your neighbour's grass looks greener than yours? We promise to
+      ensure good, clean grazing to everyone
+  - idealType: 1
+    value: 1
+    message: The time has come to ensure everyone in the farm gets a vote - even the
+      fieldmice and sparrows!
+  - idealType: 1
+    value: 1
+    message: Our hardest working animals should get rewarded - that's why we want
+      to increase worker's holiday allowance
+  - idealType: 1
+    value: -3
+    message: Our prisoners are a blight upon our meadow! We must deport them to the
+      South Field
+  - idealType: 1
+    value: -2
+    message: A sheep has the right to defend its land. We promise the law will be
+      on your side when facing down trespassers.
+  - idealType: 1
+    value: -3
+    message: The Daily Haybail is out of control! It's time to take full control of
+      all press to prevent fake news
+  - idealType: 1
+    value: -2
+    message: 'The shear numbers of sheep make feed times chaotic: we''ll make sure
+      our most valuable, powerful sheep are first to trough'
+  - idealType: 2
+    value: 2
+    message: Our footpaths are downtrodden after years of neglect. We'll take them
+      back into public ownership and set things right
+  - idealType: 2
+    value: 1
+    message: We're as worried about the health of our lambs as you are, so we'll make
+      sure they get more healthy hay and fewer sweet beets
+  - idealType: 2
     value: 3
-    message: You strongly believe in A. Nothing else will do!
-  - idealType: 0
-    value: -1
-    message: A -1.
-  - idealType: 1
-    value: 1
-    message: B +1.
-  - idealType: 1
-    value: -1
-    message: B -1.
+    message: Free eweniversity for all, guaranteeing a better future for our lambs!
   - idealType: 2
     value: 1
-    message: C +1.
+    message: Junior vets have one of the toughest, most important jobs in the herd.
+      We're dedicated to improving their working conditions
   - idealType: 2
     value: -1
-    message: C -1.
+    message: We want better connections with the Farmhouse, so we're going to build
+      a high speed footpath between it and our Meadow
+  - idealType: 2
+    value: -1
+    message: We'll set a high baa for education with more frequent and effective tests
+      for our young lambs
+  - idealType: 2
+    value: -2
+    message: 'Let''s not be sheepish about our safety: we''ll give weapons to police
+      officers to keep our Meadow safe'
+  - idealType: 2
+    value: -3
+    message: We want the best healthcare for our herd - and we can only do that by
+      privatising healthcare and fixing our broken system
+  - idealType: 3
+    value: 3
+    message: We welcome all animals, from the farm and beyond, to come and enjoy and
+      enrich our Meadow
+  - idealType: 3
+    value: 1
+    message: 'This is no time for prairie politics: we must offer aslym to all those
+      ducks who being forced to flee from the Pond'
+  - idealType: 3
+    value: 2
+    message: We will not stand for the aggression coming from the Barn, and will withhold
+      trade until peace is restored
+  - idealType: 3
+    value: 2
+    message: The conflict between the Barn and the Pond is the responsibility of us
+      all. We must work with them to find a solution
+  - idealType: 3
+    value: -3
+    message: We will build a wall across the border between our Meadow and the Paddock.
+      And we'll get the Paddock to pay for it
+  - idealType: 3
+    value: -3
+    message: The farm needs us - but we don't need the farm. We should strike out
+      on our own and make this Meadow great again
+  - idealType: 3
+    value: -2
+    message: The atrocities of chickens have gone too far. They are a threat to our
+      herd and our farm, and we will not rest until they are destroyed!
+  - idealType: 3
+    value: -3
+    message: We're not banning bipeds. We're advocating sensible restrictions on the
+      access of bipeds to our beloved Meadow
+  - idealType: 4
+    value: 2
+    message: We propose to allocate a basic amount of hay to sheep of the herd, regardless
+      of their status or income
+  - idealType: 4
+    value: 1
+    message: The fat are getting fatter, and we cannot allow this. We must increase
+      taxes on the top 1% for the benefit of us all
+  - idealType: 4
+    value: 1
+    message: Today we promise to provide all lambs with their own homes, once they
+      come of age
+  - idealType: 4
+    value: 2
+    message: We will finance multiple public projects to make the Meadow stronger,
+      cleaner and fairer for everyone
+  - idealType: 4
+    value: -3
+    message: Our hay defecit has grown too large of late. Only shrewd, careful planning
+      can reduce it and promise a better future to all our lambs
+  - idealType: 4
+    value: -1
+    message: The Meadow should be attractive to business, and so we promise to reduce
+      tax rates for large business
+  - idealType: 4
+    value: -1
+    message: We will build a stronger, healthier economy by selling our shearing assets
+      and inviting more competition into the market
+  - idealType: 4
+    value: -2
+    message: 'Our ecomomy relies on a robust financial system: so we''re increasing
+      bonuses to attract the right talent'
+  - idealType: 5
+    value: 1
+    message: '"We''ve herd you - so, by popular demand, we''ll commission a production
+      of ""Do Alpacas Dream of Electric Sheep?"""'
+  - idealType: 5
+    value: 2
+    message: We know the lambs love game jams, so we'll stand and demand more funding
+      to the creative arts
+  - idealType: 5
+    value: 1
+    message: Science is the only way to better future, so we're diverting more funding
+      to baaticle physics and cloning research
+  - idealType: 5
+    value: 2
+    message: We will commit to the legalisation of medicinal and recreational weeds,
+      which will lead to a safer, happier herd
+  - idealType: 5
+    value: -1
+    message: We're tired of being fleeced by greedy executives, so we're cutting funding
+      to the Big Bleating Corporation
+  - idealType: 5
+    value: -1
+    message: Arts from the Meadow should be for the Meadow - that's why our arts fund
+      will only benefit projects about sheep
+  - idealType: 5
+    value: -1
+    message: 'Feeling threatened by the noise out there? We propose to only allow
+      bleating in the meadow: no more neighs, winnies or barks'
+  - idealType: 5
+    value: -3
+    message: We will double the investment in our STAR BOARS programme, protecting
+      the Meadow from the agents of terror
