@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(Button))]
 public class UICard : MonoBehaviour
 {
 	public event System.Action<UICard> CardPressed = delegate { };
@@ -17,11 +19,12 @@ public class UICard : MonoBehaviour
 	[HideInInspector]
 	public int cardIndex;
 
+	protected Button button;
 	protected string helperTextFormat;
 
 	protected void Awake()
 	{
-		Button button = GetComponentInChildren<Button>();
+		button = GetComponent<Button>();
 		button.onClick.AddListener(OnCardClicked);
 
 		helperTextFormat = helperText.text;
@@ -51,12 +54,16 @@ public class UICard : MonoBehaviour
 
 	public void Highlight()
 	{
-		this.GetComponent<Image>().color = Color.yellow * 1f;
+		//this.GetComponent<Image>().color = Color.yellow * 1f;
 	}
 
 	public void UnHighlight()
 	{
-		this.GetComponent<Image>().color = Color.white;
+		//this.GetComponent<Image>().color = Color.white;
+
+		// Deselect the button.
+		BaseEventData dummyEvent = new BaseEventData(EventSystem.current);
+		button.OnDeselect(dummyEvent);
 	}
 
 	protected void SetHeaderSprite(IdealType idealType)
