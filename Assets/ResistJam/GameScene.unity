@@ -604,7 +604,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0842e666ed852cb4998a446194886f77, type: 3}
   - {fileID: 21300000, guid: 8ab8122497583874da2b351206c5feb4, type: 3}
   - {fileID: 21300000, guid: 6fb49a026a1d66f46b252d159d0d6a82, type: 3}
-  - {fileID: 21300000, guid: f0e9620ae9874b841a891bbfe26cc9fd, type: 3}
+  - {fileID: 21300000, guid: c8bd16d298e3f14468c21bd9d1d454b9, type: 3}
   cardIndex: 0
 --- !u!95 &378981274
 Animator:
@@ -2305,7 +2305,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1341968946
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2449,6 +2449,7 @@ MonoBehaviour:
   sheepPrefab: {fileID: 114685116482596268, guid: b7adc3b4da653114b9623d3aaa1715e2,
     type: 2}
   timerText: {fileID: 1703087515}
+  newsHeadline: {fileID: 1341968947}
 --- !u!1 &1537169949
 GameObject:
   m_ObjectHideFlags: 0
@@ -2882,7 +2883,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0842e666ed852cb4998a446194886f77, type: 3}
   - {fileID: 21300000, guid: 8ab8122497583874da2b351206c5feb4, type: 3}
   - {fileID: 21300000, guid: 6fb49a026a1d66f46b252d159d0d6a82, type: 3}
-  - {fileID: 21300000, guid: f0e9620ae9874b841a891bbfe26cc9fd, type: 3}
+  - {fileID: 21300000, guid: c8bd16d298e3f14468c21bd9d1d454b9, type: 3}
   cardIndex: 0
 --- !u!95 &1692739633
 Animator:
@@ -3517,7 +3518,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0842e666ed852cb4998a446194886f77, type: 3}
   - {fileID: 21300000, guid: 8ab8122497583874da2b351206c5feb4, type: 3}
   - {fileID: 21300000, guid: 6fb49a026a1d66f46b252d159d0d6a82, type: 3}
-  - {fileID: 21300000, guid: f0e9620ae9874b841a891bbfe26cc9fd, type: 3}
+  - {fileID: 21300000, guid: c8bd16d298e3f14468c21bd9d1d454b9, type: 3}
   cardIndex: 0
 --- !u!95 &2041076222
 Animator:

@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
 	protected Player player;
 	protected List<Sheep> allSheep = new List<Sheep>();
 	protected UIPlayerControls playerControls;
+	[SerializeField]
 	protected UINewsHeadline newsHeadline;
 
 	protected float roundTimer;
@@ -23,7 +24,7 @@ public class GameController : MonoBehaviour
 		player = FindObjectOfType<Player>();
 		playerControls = FindObjectOfType<UIPlayerControls>();
 		playerControls.CardSelectedEvent += OnCardSelected;
-		newsHeadline = FindObjectOfType<UINewsHeadline>();
+		//newsHeadline = FindObjectOfType<UINewsHeadline>();
 		newsHeadline.HeadlineResolvedEvent += OnHeadlineResolved;
 		newsHeadline.gameObject.SetActive(false);
 
