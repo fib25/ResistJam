@@ -21,8 +21,8 @@ public class UIPlayerControls : MonoBehaviour
 
 	protected UICard[] cardUis;
 	protected List<Card> currentCards = new List<Card>();
-	protected Player player;
-	protected Dictator dictator;
+	protected Llama player;
+	protected Wolf dictator;
 	protected List<Sheep> allSheep;
 
 	protected bool isActive = false;
@@ -32,8 +32,8 @@ public class UIPlayerControls : MonoBehaviour
 
 	protected void Awake()
 	{
-		player = FindObjectOfType<Player>();
-		dictator = FindObjectOfType<Dictator>();
+		player = FindObjectOfType<Llama>();
+		dictator = FindObjectOfType<Wolf>();
 		cardUis = GetComponentsInChildren<UICard>(true);
 
 		for (int i = 0; i < cardUis.Length; i++)

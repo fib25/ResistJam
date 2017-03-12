@@ -108,7 +108,7 @@ public class Sheep : AbstractIdealist
 		this.transform.position = startPos;
 	}
 
-	public void UpdateLean(Player player, Dictator dictator)
+	public void UpdateLean(Llama player, Wolf dictator)
 	{
 		float dictatorResult = Ideals.CompareIdeals(this.Ideals, dictator.Ideals);
 		float playerResult = Ideals.CompareIdeals(this.Ideals, player.Ideals);

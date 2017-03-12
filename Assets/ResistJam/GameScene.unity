@@ -280,6 +280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 142094470}
   - component: {fileID: 142094469}
+  - component: {fileID: 142094471}
   m_Layer: 0
   m_Name: Wolf
   m_TagString: Untagged
@@ -295,9 +296,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 142094468}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9c32563d9130a145942e9cd99e42530, type: 3}
+  m_Script: {fileID: 11500000, guid: 362bba228fc42344d8dc8f3f3bdd59a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 1
 --- !u!4 &142094470
 Transform:
   m_ObjectHideFlags: 0
@@ -305,7 +307,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 142094468}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.31, y: 6.15, z: 0}
+  m_LocalPosition: {x: -7.24, y: 6.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 640343058}
@@ -313,6 +315,23 @@ Transform:
   m_Father: {fileID: 630989574}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &142094471
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 142094468}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5187cbe7d39cda14fb56bca5ea48c322, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &182430828
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,7 +836,7 @@ RectTransform:
   m_GameObject: {fileID: 378981271}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.35, y: 1.35, z: 1.35}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 756424722}
   - {fileID: 1176577992}
@@ -1809,6 +1828,7 @@ GameObject:
   m_Component:
   - component: {fileID: 714422397}
   - component: {fileID: 714422396}
+  - component: {fileID: 714422398}
   m_Layer: 0
   m_Name: Llama
   m_TagString: Untagged
@@ -1827,6 +1847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2129a9d16f0270f4799fbd4d8d24d5ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 1
 --- !u!4 &714422397
 Transform:
   m_ObjectHideFlags: 0
@@ -1842,6 +1863,23 @@ Transform:
   m_Father: {fileID: 630989574}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &714422398
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 714422395}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3d4092e2d93093a4bbb13e61516384ee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &724658664
 GameObject:
   m_ObjectHideFlags: 0
@@ -4302,7 +4340,7 @@ RectTransform:
   m_GameObject: {fileID: 1692739630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.35, y: 1.35, z: 1.35}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 637064700}
   - {fileID: 906010705}
@@ -4959,7 +4997,7 @@ RectTransform:
   m_GameObject: {fileID: 2041076219}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.35, y: 1.35, z: 1.35}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 321546000}
   - {fileID: 301721011}

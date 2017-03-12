@@ -8,8 +8,8 @@ public class GameController : MonoBehaviour
 	public UnityEngine.UI.Text timerText;
 
 	protected Transform sheepFlockTransform;
-	protected Dictator dictator;
-	protected Player player;
+	protected Wolf dictator;
+	protected Llama player;
 	protected List<Sheep> allSheep = new List<Sheep>();
 	protected UIPlayerControls playerControls;
 	[SerializeField]
@@ -18,11 +18,12 @@ public class GameController : MonoBehaviour
 
 	protected float roundTimer;
 	protected bool gameRunning = false;
+	protected bool doLlamaSfx = true;
 
 	protected void Awake()
 	{
-		dictator = FindObjectOfType<Dictator>();
-		player = FindObjectOfType<Player>();
+		dictator = FindObjectOfType<Wolf>();
+		player = FindObjectOfType<Llama>();
 		playerControls = FindObjectOfType<UIPlayerControls>();
 		playerControls.CardSelectedEvent += OnCardSelected;
 		//newsHeadline = FindObjectOfType<UINewsHeadline>();
@@ -237,6 +238,23 @@ public class GameController : MonoBehaviour
 	{
 		player.Ideals.AddToIdealValue(card.idealType, card.value);
 		dictator.Ideals.AddToIdealValue(card.idealType, -card.value);
+
+		player.DoAnnounce();
+		dictator.DoAnnounce();
+
+		if (doLlamaSfx)
+		{
+			AudioManager.PlaySFX("declare-policy");
+		}
+		else
+		{
+			AudioManager.PlaySFX("howl");
+		}
+
+		//AudioManager.PlaySFX("declare-policy");
+		//AudioManager.PlaySFX("howl");
+
+		doLlamaSfx = !doLlamaSfx;
 	}
 
 	protected void OnHeadlineResolved(IdealType idealType, IdealLean lean)
@@ -281,6 +299,8 @@ public class GameController : MonoBehaviour
 		newsHeadline.Hide();
 
 		StartNewsHeadlineCountdown();
+
+		AudioManager.PlaySFXRandom("baa");
 
 		playerControls.Show();
 		playerControls.ShowNewCards();
